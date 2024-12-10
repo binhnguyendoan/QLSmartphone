@@ -28,3 +28,4 @@ $router->addRoute('/\/user\/delete\/(\d+)/', [new UserController(), 'delete']);
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);
 $router->addRoute('/\/admin\/dashboard/', [new AdminController(), 'dashboard']);
+$router->addRoute('/\/logout/', [new AdminController(), 'logout']);

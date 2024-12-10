@@ -1,39 +1,70 @@
-<!-- /templates/layout.php -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Dashboard</title>
 
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="/public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/public/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/public/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="/public/bower_components/jvectormap/jquery-jvectormap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/public/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="../public/css/style.css">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <!-- ./wrapper -->
     <!-- Toastify CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Toastify JS -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <link rel="stylesheet" href="../public/css/assets/vendors/feather/feather.css">
-    <link rel="stylesheet" href="../public/css/assets/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="../public/css/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../public/css/assets/vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../public/css/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- <link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"> -->
-    <link rel="stylesheet" href="../public/css/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
-    <link rel="stylesheet" href="../public/css/assets/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/assets/js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="../public/css/assets/css/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="../public/css/assets/images/favicon.png" />
-    <link rel="stylesheet" href="../public/css/style.css">
-    <title>App</title>
-</head>
+    <!-- jQuery 3 -->
+    <script src="/public/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="/public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/public/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/public/dist/js/adminlte.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/public/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap  -->
+    <script src="/public/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/public/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- SlimScroll -->
+    <script src="/public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/public/bower_components/chart.js/Chart.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/public/dist/js/pages/dashboard2.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/public/dist/js/demo.js"></script>
 
-<body>
     <div class=" ">
         <?= $content ?>
     </div>
@@ -58,8 +89,8 @@
     <script src="../public/css/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="../public/css/assets/js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../public/css/assets/js/dashboard.js"></script>
+    <script src="../public/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../public/assets/js/dashboard.js"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
 </body>

@@ -1,1015 +1,1586 @@
 <?php ob_start(); ?>
-<div class="container-scroller">
+<?php
 
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-            <a class="navbar-brand brand-logo me-5" href="index.html"><img src="assets/images/logo.svg" class="me-2"
-                    alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
-                    alt="logo" /></a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                <span class="icon-menu"></span>
-            </button>
-            <ul class="navbar-nav mr-lg-2">
-                <li class="nav-item nav-search d-none d-lg-block">
-                    <div class="input-group">
-                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                                <i class="icon-search"></i>
-                            </span>
-                        </div>
-                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                            aria-label="search" aria-describedby="search">
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                        data-bs-toggle="dropdown">
-                        <i class="icon-bell mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                        aria-labelledby="notificationDropdown">
-                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="ti-info-alt mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                            </div>
+$admin = $_SESSION['admin'] ?? null;
+?>
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="/admin/dashboard" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>A</b>LT</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">4</span>
                         </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="ti-settings mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="ti-user mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                        <img src="assets/images/faces/face28.jpg" alt="profile" />
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
-                            <i class="ti-settings text-primary"></i> Settings </a>
-                        <a class="dropdown-item">
-                            <i class="ti-power-off text-primary"></i> Logout </a>
-                    </div>
-                </li>
-                <li class="nav-item nav-settings d-none d-lg-flex">
-                    <a class="nav-link" href="#">
-                        <i class="icon-ellipsis"></i>
-                    </a>
-                </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-                <span class="icon-menu"></span>
-            </button>
-        </div>
-    </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="icon-layout menu-icon"></i>
-                        <span class="menu-title">UI Elements</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link"
-                                    href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                            <li class="nav-item"> <a class="nav-link"
-                                    href="pages/ui-features/typography.html">Typography</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
-                        aria-controls="form-elements">
-                        <i class="icon-columns menu-icon"></i>
-                        <span class="menu-title">Form elements</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="form-elements">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic
-                                    Elements</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
-                        aria-controls="charts">
-                        <i class="icon-bar-graph menu-icon"></i>
-                        <span class="menu-title">Charts</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="charts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
-                        aria-controls="tables">
-                        <i class="icon-grid-2 menu-icon"></i>
-                        <span class="menu-title">Tables</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="tables">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic
-                                    table</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
-                        aria-controls="icons">
-                        <i class="icon-contract menu-icon"></i>
-                        <span class="menu-title">Icons</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="icons">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
-                        aria-controls="auth">
-                        <i class="icon-head menu-icon"></i>
-                        <span class="menu-title">User Pages</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false"
-                        aria-controls="error">
-                        <i class="icon-ban menu-icon"></i>
-                        <span class="menu-title">Error pages</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="error">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../../docs/documentation.html">
-                        <i class="icon-paper menu-icon"></i>
-                        <span class="menu-title">Documentation</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-md-12 grid-margin">
-                        <div class="row">
-                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                <h3 class="font-weight-bold">Welcome John</h3>
-                                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                        class="text-primary">3 unread alerts!</span></h6>
-                            </div>
-                            <div class="col-12 col-xl-4">
-                                <div class="justify-content-end d-flex">
-                                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button"
-                                            id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                            <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
-                                        <div class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdownMenuDate2">
-                                            <a class="dropdown-item" href="#">January - March</a>
-                                            <a class="dropdown-item" href="#">March - June</a>
-                                            <a class="dropdown-item" href="#">June - August</a>
-                                            <a class="dropdown-item" href="#">August - November</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card tale-bg">
-                            <div class="card-people mt-auto">
-                                <img src="assets/images/dashboard/people.svg" alt="people">
-                                <div class="weather-info">
-                                    <div class="d-flex">
-                                        <div>
-                                            <h2 class="mb-0 font-weight-normal"><i
-                                                    class="icon-sun me-2"></i>31<sup>C</sup></h2>
-                                        </div>
-                                        <div class="ms-2">
-                                            <h4 class="location font-weight-normal">Chicago</h4>
-                                            <h6 class="font-weight-normal">Illinois</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 grid-margin transparent">
-                        <div class="row">
-                            <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-tale">
-                                    <div class="card-body">
-                                        <p class="mb-4">Today’s Bookings</p>
-                                        <p class="fs-30 mb-2">4006</p>
-                                        <p>10.00% (30 days)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-dark-blue">
-                                    <div class="card-body">
-                                        <p class="mb-4">Total Bookings</p>
-                                        <p class="fs-30 mb-2">61344</p>
-                                        <p>22.00% (30 days)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                                <div class="card card-light-blue">
-                                    <div class="card-body">
-                                        <p class="mb-4">Number of Meetings</p>
-                                        <p class="fs-30 mb-2">34040</p>
-                                        <p>2.00% (30 days)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 stretch-card transparent">
-                                <div class="card card-light-danger">
-                                    <div class="card-body">
-                                        <p class="mb-4">Number of Clients</p>
-                                        <p class="fs-30 mb-2">47033</p>
-                                        <p>0.22% (30 days)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title">Order Details</p>
-                                <p class="font-weight-500">The total number of sessions within the date range. It is the
-                                    period time a user is actively engaged with your website, page or app, etc</p>
-                                <div class="d-flex flex-wrap mb-5">
-                                    <div class="me-5 mt-3">
-                                        <p class="text-muted">Order value</p>
-                                        <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                    </div>
-                                    <div class="me-5 mt-3">
-                                        <p class="text-muted">Orders</p>
-                                        <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
-                                    </div>
-                                    <div class="me-5 mt-3">
-                                        <p class="text-muted">Users</p>
-                                        <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                                    </div>
-                                    <div class="mt-3">
-                                        <p class="text-muted">Downloads</p>
-                                        <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
-                                    </div>
-                                </div>
-                                <canvas id="order-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <p class="card-title">Sales Report</p>
-                                    <a href="#" class="text-info">View all</a>
-                                </div>
-                                <p class="font-weight-500">The total number of sessions within the date range. It is the
-                                    period time a user is actively engaged with your website, page or app, etc</p>
-                                <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                                <canvas id="sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card position-relative">
-                            <div class="card-body">
-                                <div id="detailedReports"
-                                    class="carousel slide detailed-report-carousel position-static pt-2"
-                                    data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <div class="row">
-                                                <div
-                                                    class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                                                    <div class="ml-xl-4 mt-3">
-                                                        <p class="card-title">Detailed Reports</p>
-                                                        <h1 class="text-primary">$34040</h1>
-                                                        <h3 class="font-weight-500 mb-xl-4 text-primary">North America
-                                                        </h3>
-                                                        <p class="mb-2 mb-xl-0">The total number of sessions within the
-                                                            date range. It is the period time a user is actively engaged
-                                                            with your website, page or app, etc</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 col-xl-9">
-                                                    <div class="row">
-                                                        <div class="col-md-6 border-right">
-                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                                <table class="table table-borderless report-table">
-                                                                    <tr>
-                                                                        <td class="text-muted">Illinois</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-primary"
-                                                                                    role="progressbar"
-                                                                                    style="width: 70%"
-                                                                                    aria-valuenow="70" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">713</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Washington</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-warning"
-                                                                                    role="progressbar"
-                                                                                    style="width: 30%"
-                                                                                    aria-valuenow="30" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">583</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Mississippi</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-danger"
-                                                                                    role="progressbar"
-                                                                                    style="width: 95%"
-                                                                                    aria-valuenow="95" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">924</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">California</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-info"
-                                                                                    role="progressbar"
-                                                                                    style="width: 60%"
-                                                                                    aria-valuenow="60" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">664</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Maryland</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-primary"
-                                                                                    role="progressbar"
-                                                                                    style="width: 40%"
-                                                                                    aria-valuenow="40" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">560</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Alaska</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-danger"
-                                                                                    role="progressbar"
-                                                                                    style="width: 75%"
-                                                                                    aria-valuenow="75" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">793</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 mt-3">
-                                                            <div class="daoughnutchart-wrapper">
-                                                                <canvas id="north-america-chart"></canvas>
-                                                            </div>
-                                                            <div id="north-america-chart-legend">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="row">
-                                                <div
-                                                    class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                                                    <div class="ml-xl-4 mt-3">
-                                                        <p class="card-title">Detailed Reports</p>
-                                                        <h1 class="text-primary">$34040</h1>
-                                                        <h3 class="font-weight-500 mb-xl-4 text-primary">North America
-                                                        </h3>
-                                                        <p class="mb-2 mb-xl-0">The total number of sessions within the
-                                                            date range. It is the period time a user is actively engaged
-                                                            with your website, page or app, etc</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 col-xl-9">
-                                                    <div class="row">
-                                                        <div class="col-md-6 border-right">
-                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                                <table class="table table-borderless report-table">
-                                                                    <tr>
-                                                                        <td class="text-muted">Illinois</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-primary"
-                                                                                    role="progressbar"
-                                                                                    style="width: 70%"
-                                                                                    aria-valuenow="70" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">713</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Washington</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-warning"
-                                                                                    role="progressbar"
-                                                                                    style="width: 30%"
-                                                                                    aria-valuenow="30" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">583</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Mississippi</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-danger"
-                                                                                    role="progressbar"
-                                                                                    style="width: 95%"
-                                                                                    aria-valuenow="95" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">924</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">California</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-info"
-                                                                                    role="progressbar"
-                                                                                    style="width: 60%"
-                                                                                    aria-valuenow="60" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">664</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Maryland</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-primary"
-                                                                                    role="progressbar"
-                                                                                    style="width: 40%"
-                                                                                    aria-valuenow="40" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">560</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="text-muted">Alaska</td>
-                                                                        <td class="w-100 px-0">
-                                                                            <div class="progress progress-md mx-4">
-                                                                                <div class="progress-bar bg-danger"
-                                                                                    role="progressbar"
-                                                                                    style="width: 75%"
-                                                                                    aria-valuenow="75" aria-valuemin="0"
-                                                                                    aria-valuemax="100"></div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <h5 class="font-weight-bold mb-0">793</h5>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 mt-3">
-                                                            <div class="daoughnutchart-wrapper">
-                                                                <canvas id="south-america-chart"></canvas>
-                                                            </div>
-                                                            <div id="south-america-chart-legend"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#detailedReports" role="button"
-                                        data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#detailedReports" role="button"
-                                        data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-7 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title mb-0">Top Products</p>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Search Engine Marketing</td>
-                                                <td class="font-weight-bold">$362</td>
-                                                <td>21 Sep 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-success">Completed</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Search Engine Optimization</td>
-                                                <td class="font-weight-bold">$116</td>
-                                                <td>13 Jun 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-success">Completed</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Display Advertising</td>
-                                                <td class="font-weight-bold">$551</td>
-                                                <td>28 Sep 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-warning">Pending</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pay Per Click Advertising</td>
-                                                <td class="font-weight-bold">$523</td>
-                                                <td>30 Jun 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-warning">Pending</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>E-Mail Marketing</td>
-                                                <td class="font-weight-bold">$781</td>
-                                                <td>01 Nov 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-danger">Cancelled</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Referral Marketing</td>
-                                                <td class="font-weight-bold">$283</td>
-                                                <td>20 Mar 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-warning">Pending</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Social media marketing</td>
-                                                <td class="font-weight-bold">$897</td>
-                                                <td>26 Oct 2018</td>
-                                                <td class="font-weight-medium">
-                                                    <div class="badge badge-success">Completed</div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">To Do Lists</h4>
-                                <div class="list-wrapper pt-2">
-                                    <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                                        <li>
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox"> Meeting with Urban Team
-                                                </label>
-                                            </div>
-                                            <i class="remove ti-close"></i>
-                                        </li>
-                                        <li class="completed">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox" checked> Duplicate a project
-                                                    for new customer </label>
-                                            </div>
-                                            <i class="remove ti-close"></i>
-                                        </li>
-                                        <li>
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox"> Project meeting with CEO
-                                                </label>
-                                            </div>
-                                            <i class="remove ti-close"></i>
-                                        </li>
-                                        <li class="completed">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox" checked> Follow up of team
-                                                    zilla </label>
-                                            </div>
-                                            <i class="remove ti-close"></i>
-                                        </li>
-                                        <li>
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox"> Level up for Antony
-                                                </label>
-                                            </div>
-                                            <i class="remove ti-close"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="add-items d-flex mb-0 mt-2">
-                                    <input type="text" class="form-control todo-list-input" placeholder="Add new task">
-                                    <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i
-                                            class="icon-circle-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 stretch-card grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title mb-0">Projects</p>
-                                <div class="table-responsive">
-                                    <table class="table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th class="ps-0  pb-2 border-bottom">Places</th>
-                                                <th class="border-bottom pb-2">Orders</th>
-                                                <th class="border-bottom pb-2">Users</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="ps-0">Kentucky</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">65</span>(2.15%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">65</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0">Ohio</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">54</span>(3.25%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">51</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0">Nevada</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">22</span>(2.22%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">32</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0">North Carolina</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">46</span>(3.27%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">15</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0">Montana</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">17</span>(1.25%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">25</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0">Nevada</td>
-                                                <td>
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">52</span>(3.11%)
-                                                    </p>
-                                                </td>
-                                                <td class="text-muted">71</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ps-0 pb-0">Louisiana</td>
-                                                <td class="pb-0">
-                                                    <p class="mb-0"><span class="font-weight-bold me-2">25</span>(1.32%)
-                                                    </p>
-                                                </td>
-                                                <td class="pb-0">14</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 stretch-card grid-margin">
-                        <div class="row">
-                            <div class="col-md-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p class="card-title">Charts</p>
-                                        <div class="charts-data">
-                                            <div class="mt-3">
-                                                <p class="mb-0">Data 1</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="progress progress-md flex-grow-1 me-4">
-                                                        <div class="progress-bar bg-inf0" role="progressbar"
-                                                            style="width: 95%" aria-valuenow="95" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mb-0">5k</p>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <p class="mb-0">Data 2</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="progress progress-md flex-grow-1 me-4">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mb-0">1k</p>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <p class="mb-0">Data 3</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="progress progress-md flex-grow-1 me-4">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 48%" aria-valuenow="48" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mb-0">992</p>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <p class="mb-0">Data 4</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="progress progress-md flex-grow-1 me-4">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mb-0">687</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
-                                <div class="card data-icon-card-primary">
-                                    <div class="card-body">
-                                        <p class="card-title text-white">Number of Meetings</p>
-                                        <div class="row">
-                                            <div class="col-8 text-white">
-                                                <h3>34040</h3>
-                                                <p class="text-white font-weight-500 mb-0">The total number of sessions
-                                                    within the date range.It is calculated as the sum . </p>
-                                            </div>
-                                            <div class="col-4 background-icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 stretch-card grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title">Notifications</p>
-                                <ul class="icon-data-list">
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 4 messages</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
                                     <li>
-                                        <div class="d-flex">
-                                            <img src="assets/images/faces/face1.jpg" alt="user">
-                                            <div>
-                                                <p class="text-info mb-1">Isabella Becker</p>
-                                                <p class="mb-0">Sales dashboard have been created</p>
-                                                <small>9:30 am</small>
+                                        <!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="/public/dist/img/user2-160x160.jpg" class="img-circle"
+                                                    alt="User Image">
                                             </div>
-                                        </div>
+                                            <h4>
+                                                Support Team
+                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message -->
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="/public/dist/img/user3-128x128.jpg" class="img-circle"
+                                                    alt="User Image">
+                                            </div>
+                                            <h4>
+                                                AdminLTE Design Team
+                                                <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
                                     </li>
                                     <li>
-                                        <div class="d-flex">
-                                            <img src="assets/images/faces/face2.jpg" alt="user">
-                                            <div>
-                                                <p class="text-info mb-1">Adam Warren</p>
-                                                <p class="mb-0">You have done a great job #TW111</p>
-                                                <small>10:30 am</small>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="/public/dist/img/user4-128x128.jpg" class="img-circle"
+                                                    alt="User Image">
                                             </div>
-                                        </div>
+                                            <h4>
+                                                Developers
+                                                <small><i class="fa fa-clock-o"></i> Today</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
                                     </li>
                                     <li>
-                                        <div class="d-flex">
-                                            <img src="assets/images/faces/face3.jpg" alt="user">
-                                            <div>
-                                                <p class="text-info mb-1">Leonard Thornton</p>
-                                                <p class="mb-0">Sales dashboard have been created</p>
-                                                <small>11:30 am</small>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="/public/dist/img/user3-128x128.jpg" class="img-circle"
+                                                    alt="User Image">
                                             </div>
-                                        </div>
+                                            <h4>
+                                                Sales Department
+                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
                                     </li>
                                     <li>
-                                        <div class="d-flex">
-                                            <img src="assets/images/faces/face4.jpg" alt="user">
-                                            <div>
-                                                <p class="text-info mb-1">George Morrison</p>
-                                                <p class="mb-0">Sales dashboard have been created</p>
-                                                <small>8:50 am</small>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="/public/dist/img/user4-128x128.jpg" class="img-circle"
+                                                    alt="User Image">
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex">
-                                            <img src="assets/images/faces/face5.jpg" alt="user">
-                                            <div>
-                                                <p class="text-info mb-1">Ryan Cortez</p>
-                                                <p class="mb-0">Herbs are fun and easy to grow.</p>
-                                                <small>9:00 am</small>
-                                            </div>
-                                        </div>
+                                            <h4>
+                                                Reviewers
+                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title">Advanced Table</p>
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i> Very long description here that
+                                            may not fit into the
+                                            page and may cause design problems
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-red"></i> 5 new members joined
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user text-red"></i> You changed your username
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                    role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Create a nice theme
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                    role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    <span class="sr-only">40% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Some task I need to do
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                    role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    <span class="sr-only">60% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Make beautiful transitions
+                                                <small class="pull-right">80%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 80%"
+                                                    role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="<?php echo $admin['image'] ?>" class="user-image" alt="User Image">
+                            <span class="hidden-xs"><?php echo $admin['name'] ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="<?php echo $admin['image'] ?>" class="img-circle" alt="User Image">
+
+                                <p>
+                                    <?php echo $admin['name'] ?> - Web Developer
+                                    <small>Member since Nov. 2024</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="table-responsive">
-                                            <table id="example" class="display expandable-table" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Quote#</th>
-                                                        <th>Product</th>
-                                                        <th>Business type</th>
-                                                        <th>Policy holder</th>
-                                                        <th>Premium</th>
-                                                        <th>Status</th>
-                                                        <th>Updated at</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="<?php echo $admin['image']  ?> " class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p><?php echo $admin['name']  ?></p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.
-                        Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a>
-                        from BootstrapDash. All rights reserved.</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                            class="ti-heart text-danger ms-1"></i></span>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                 </div>
-            </footer>
-            <!-- partial -->
-        </div>
-        <!-- main-panel ends -->
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active treeview menu-open">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                        <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Layout Options</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">4</span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                        <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                        <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                        <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed
+                                Sidebar</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/widgets.html">
+                        <i class="fa fa-th"></i> <span>Widgets</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green">new</small>
+                        </span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i>
+                        <span>Charts</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                        <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                        <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                        <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-laptop"></i>
+                        <span>UI Elements</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+                        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+                        <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+                        <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+                        <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
+                        <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>Forms</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a>
+                        </li>
+                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-table"></i> <span>Tables</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                        <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/calendar.html">
+                        <i class="fa fa-calendar"></i> <span>Calendar</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-red">3</small>
+                            <small class="label pull-right bg-blue">17</small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/mailbox/mailbox.html">
+                        <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-yellow">12</small>
+                            <small class="label pull-right bg-green">16</small>
+                            <small class="label pull-right bg-red">5</small>
+                        </span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder"></i> <span>Examples</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                        <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+                        <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                        <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                        <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                        <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                        <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                        <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                        <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-share"></i> <span>Multilevel</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> Level One
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                                <li class="treeview">
+                                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+                <li class="header">LABELS</li>
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>Version 2.0</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">CPU Traffic</span>
+                            <span class="info-box-number">90<small>%</small></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Likes</span>
+                            <span class="info-box-number">41,410</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Sales</span>
+                            <span class="info-box-number">760</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">New Members</span>
+                            <span class="info-box-number">2,000</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Monthly Recap Report</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-box-tool dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        <i class="fa fa-wrench"></i></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p class="text-center">
+                                        <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <!-- Sales Chart Canvas -->
+                                        <canvas id="salesChart" style="height: 180px;"></canvas>
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4">
+                                    <p class="text-center">
+                                        <strong>Goal Completion</strong>
+                                    </p>
+
+                                    <div class="progress-group">
+                                        <span class="progress-text">Add Products to Cart</span>
+                                        <span class="progress-number"><b>160</b>/200</span>
+
+                                        <div class="progress sm">
+                                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        <span class="progress-text">Complete Purchase</span>
+                                        <span class="progress-number"><b>310</b>/400</span>
+
+                                        <div class="progress sm">
+                                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        <span class="progress-text">Visit Premium Page</span>
+                                        <span class="progress-number"><b>480</b>/800</span>
+
+                                        <div class="progress sm">
+                                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        <span class="progress-text">Send Inquiries</span>
+                                        <span class="progress-number"><b>250</b>/500</span>
+
+                                        <div class="progress sm">
+                                            <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./box-body -->
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>
+                                            17%</span>
+                                        <h5 class="description-header">$35,210.43</h5>
+                                        <span class="description-text">TOTAL REVENUE</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-yellow"><i
+                                                class="fa fa-caret-left"></i> 0%</span>
+                                        <h5 class="description-header">$10,390.90</h5>
+                                        <span class="description-text">TOTAL COST</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i>
+                                            20%</span>
+                                        <h5 class="description-header">$24,813.53</h5>
+                                        <span class="description-text">TOTAL PROFIT</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="description-block">
+                                        <span class="description-percentage text-red"><i class="fa fa-caret-down"></i>
+                                            18%</span>
+                                        <h5 class="description-header">1200</h5>
+                                        <span class="description-text">GOAL COMPLETIONS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <div class="col-md-8">
+                    <!-- MAP & BOX PANE -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Visitors Report</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-8">
+                                    <div class="pad">
+                                        <!-- Map will be created here -->
+                                        <div id="world-map-markers" style="height: 325px;"></div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="pad box-pane-right bg-green" style="min-height: 280px">
+                                        <div class="description-block margin-bottom">
+                                            <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
+                                            <h5 class="description-header">8390</h5>
+                                            <span class="description-text">Visits</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                        <div class="description-block margin-bottom">
+                                            <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                            <h5 class="description-header">30%</h5>
+                                            <span class="description-text">Referrals</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                        <div class="description-block">
+                                            <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                            <h5 class="description-header">70%</h5>
+                                            <span class="description-text">Organic</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- DIRECT CHAT -->
+                            <div class="box box-warning direct-chat direct-chat-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Direct Chat</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <span data-toggle="tooltip" title="3 New Messages"
+                                            class="badge bg-yellow">3</span>
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                                class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip"
+                                            title="Contacts" data-widget="chat-pane-toggle">
+                                            <i class="fa fa-comments"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                                class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <!-- Conversations are loaded here -->
+                                    <div class="direct-chat-messages">
+                                        <!-- Message. Default to the left -->
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-info -->
+                                            <img class="direct-chat-img" src="/public/dist/img/user1-128x128.jpg"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                Is this template really for free? That's unbelievable!
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message to the right -->
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-info -->
+                                            <img class="direct-chat-img" src="/public/dist/img/user3-128x128.jpg"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                You better believe it!
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message. Default to the left -->
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                                                <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-info -->
+                                            <img class="direct-chat-img" src="/public/dist/img/user1-128x128.jpg"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                Working with AdminLTE on a great new app! Wanna join?
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message to the right -->
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                                                <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-info -->
+                                            <img class="direct-chat-img" src="/public/dist/img/user3-128x128.jpg"
+                                                alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                I would love to.
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                    </div>
+                                    <!--/.direct-chat-messages-->
+
+                                    <!-- Contacts are loaded here -->
+                                    <div class="direct-chat-contacts">
+                                        <ul class="contacts-list">
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user1-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            Count Dracula
+                                                            <small
+                                                                class="contacts-list-date pull-right">2/28/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">How have you been? I
+                                                            was...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user7-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            Sarah Doe
+                                                            <small
+                                                                class="contacts-list-date pull-right">2/23/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">I will be waiting for...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user3-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            Nadia Jolie
+                                                            <small
+                                                                class="contacts-list-date pull-right">2/20/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">I'll call you back at...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user5-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            Nora S. Vans
+                                                            <small
+                                                                class="contacts-list-date pull-right">2/10/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">Where is your new...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user6-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            John K.
+                                                            <small
+                                                                class="contacts-list-date pull-right">1/27/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">Can I take a look at...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img"
+                                                        src="/public/dist/img/user8-128x128.jpg" alt="User Image">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                                                            Kenneth M.
+                                                            <small
+                                                                class="contacts-list-date pull-right">1/4/2015</small>
+                                                        </span>
+                                                        <span class="contacts-list-msg">Never mind I found...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                        </ul>
+                                        <!-- /.contatcts-list -->
+                                    </div>
+                                    <!-- /.direct-chat-pane -->
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <form action="#" method="post">
+                                        <div class="input-group">
+                                            <input type="text" name="message" placeholder="Type Message ..."
+                                                class="form-control">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-warning btn-flat">Send</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.box-footer-->
+                            </div>
+                            <!--/.direct-chat -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-md-6">
+                            <!-- USERS LIST -->
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Latest Members</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <span class="label label-danger">8 New Members</span>
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                                class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                                class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body no-padding">
+                                    <ul class="users-list clearfix">
+                                        <li>
+                                            <img src="/public/dist/img/user1-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Alexander Pierce</a>
+                                            <span class="users-list-date">Today</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user8-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Norman</a>
+                                            <span class="users-list-date">Yesterday</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user7-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Jane</a>
+                                            <span class="users-list-date">12 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user6-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">John</a>
+                                            <span class="users-list-date">12 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user2-160x160.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Alexander</a>
+                                            <span class="users-list-date">13 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user5-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Sarah</a>
+                                            <span class="users-list-date">14 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user4-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Nora</a>
+                                            <span class="users-list-date">15 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="/public/dist/img/user3-128x128.jpg" alt="User Image">
+                                            <a class="users-list-name" href="#">Nadia</a>
+                                            <span class="users-list-date">15 Jan</span>
+                                        </li>
+                                    </ul>
+                                    <!-- /.users-list -->
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer text-center">
+                                    <a href="javascript:void(0)" class="uppercase">View All Users</a>
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                            <!--/.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Latest Orders</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Item</th>
+                                            <th>Status</th>
+                                            <th>Popularity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                                            <td>Call of Duty IV</td>
+                                            <td><span class="label label-success">Shipped</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    90,80,90,-70,61,-83,63</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
+                                            <td>Samsung Smart TV</td>
+                                            <td><span class="label label-warning">Pending</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#f39c12" data-height="20">
+                                                    90,80,-90,70,61,-83,68</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                                            <td>iPhone 6 Plus</td>
+                                            <td><span class="label label-danger">Delivered</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#f56954" data-height="20">
+                                                    90,-80,90,70,-61,83,63</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                                            <td>Samsung Smart TV</td>
+                                            <td><span class="label label-info">Processing</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">
+                                                    90,80,-90,70,-61,83,63</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
+                                            <td>Samsung Smart TV</td>
+                                            <td><span class="label label-warning">Pending</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#f39c12" data-height="20">
+                                                    90,80,-90,70,61,-83,68</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                                            <td>iPhone 6 Plus</td>
+                                            <td><span class="label label-danger">Delivered</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#f56954" data-height="20">
+                                                    90,-80,90,70,-61,83,63</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                                            <td>Call of Duty IV</td>
+                                            <td><span class="label label-success">Shipped</span></td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    90,80,90,-70,61,-83,63</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New
+                                Order</a>
+                            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All
+                                Orders</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+
+                <div class="col-md-4">
+                    <!-- Info Boxes Style 2 -->
+                    <div class="info-box bg-yellow">
+                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Inventory</span>
+                            <span class="info-box-number">5,200</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                            </div>
+                            <span class="progress-description">
+                                50% Increase in 30 Days
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box bg-green">
+                        <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Mentions</span>
+                            <span class="info-box-number">92,050</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 20%"></div>
+                            </div>
+                            <span class="progress-description">
+                                20% Increase in 30 Days
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box bg-red">
+                        <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Downloads</span>
+                            <span class="info-box-number">114,381</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                            <span class="progress-description">
+                                70% Increase in 30 Days
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Direct Messages</span>
+                            <span class="info-box-number">163,921</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 40%"></div>
+                            </div>
+                            <span class="progress-description">
+                                40% Increase in 30 Days
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Browser Usage</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="chart-responsive">
+                                        <canvas id="pieChart" height="150"></canvas>
+                                    </div>
+                                    <!-- ./chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4">
+                                    <ul class="chart-legend clearfix">
+                                        <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
+                                        <li><i class="fa fa-circle-o text-green"></i> IE</li>
+                                        <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
+                                        <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
+                                        <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
+                                        <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                                    </ul>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">United States of America
+                                        <span class="pull-right text-red"><i class="fa fa-angle-down"></i>
+                                            12%</span></a></li>
+                                <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i>
+                                            4%</span></a>
+                                </li>
+                                <li><a href="#">China
+                                        <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i>
+                                            0%</span></a></li>
+                            </ul>
+                        </div>
+                        <!-- /.footer -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- PRODUCT LIST -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Recently Added Products</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <ul class="products-list product-list-in-box">
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="/public/dist/img/default-50x50.gif" alt="Product Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="javascript:void(0)" class="product-title">Samsung TV
+                                            <span class="label label-warning pull-right">$1800</span></a>
+                                        <span class="product-description">
+                                            Samsung 32" 1080p 60Hz LED Smart HDTV.
+                                        </span>
+                                    </div>
+                                </li>
+                                <!-- /.item -->
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="/public/dist/img/default-50x50.gif" alt="Product Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="javascript:void(0)" class="product-title">Bicycle
+                                            <span class="label label-info pull-right">$700</span></a>
+                                        <span class="product-description">
+                                            26" Mongoose Dolomite Men's 7-speed, Navy Blue.
+                                        </span>
+                                    </div>
+                                </li>
+                                <!-- /.item -->
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="/public/dist/img/default-50x50.gif" alt="Product Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="javascript:void(0)" class="product-title">Xbox One <span
+                                                class="label label-danger pull-right">$350</span></a>
+                                        <span class="product-description">
+                                            Xbox One Console Bundle with Halo Master Chief Collection.
+                                        </span>
+                                    </div>
+                                </li>
+                                <!-- /.item -->
+                                <li class="item">
+                                    <div class="product-img">
+                                        <img src="/public/dist/img/default-50x50.gif" alt="Product Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="javascript:void(0)" class="product-title">PlayStation 4
+                                            <span class="label label-success pull-right">$399</span></a>
+                                        <span class="product-description">
+                                            PlayStation 4 500GB Console (PS4)
+                                        </span>
+                                    </div>
+                                </li>
+                                <!-- /.item -->
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer text-center">
+                            <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.18
+        </div>
+        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right">
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+
 </div>
 
 <?php $content = ob_get_clean(); ?>

@@ -21,16 +21,26 @@ class AdminController extends Controller
         $this->render('admin\login_admin', []);
     }
 
+
     public function login()
     {
+        session_start();
+        if (isset($_SESSION['admin'])) {
+            header("Location: /admin/dashboard");
+            exit;
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
             $adminModel = new Admin();
             $admin = $adminModel->login($username, $password);
             if ($admin) {
-                session_start();
-                $_SESSION['admin'] = $admin;
+                $_SESSION['admin'] = [
+                    'id' => $admin['id'],
+                    'name' => $admin['name'],
+                    'image' => $admin['image']
+                ];
+                print_r($_SESSION['admin']);
                 header("Location: /admin/dashboard");
                 exit;
             } else {
@@ -41,9 +51,25 @@ class AdminController extends Controller
             include(__DIR__ . '../../Views/Admin/login_admin.php');
         }
     }
-
+    function checkAuth()
+    {
+        session_start();
+        if (!isset($_SESSION['admin'])) {
+            header("Location: /admin/login");
+            exit;
+        }
+    }
     public function dashboard()
     {
+        $this->checkAuth();
         $this->render('admin\dashboard', []);
+    }
+    public function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: /admin/login");
+        exit;
     }
 }

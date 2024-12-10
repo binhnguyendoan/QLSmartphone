@@ -4,7 +4,7 @@
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form action="/login" method="post">
+<form action="/login" method="post" class="form_login">
     <h3>Login Admin</h3>
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="Email or Phone" id="username" required>
@@ -14,16 +14,16 @@
 </form>
 
 <script>
-const error = "<?php echo $error; ?>";
-if (error) {
-    Toastify({
-        text: error,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-    }).showToast();
-}
+    const error = "<?php echo $error; ?>";
+    if (error) {
+        Toastify({
+            text: error,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        }).showToast();
+    }
 </script>
 
 <?php $content = ob_get_clean(); ?>
