@@ -64,8 +64,8 @@
                                 <li class="active"><a href="index.html">Home</a></li>
                                 <li class="has-sub"><a href="#">Mobiles</a>
                                     <ul>
-                                        <li><a href="product-list.html">Mobile List</a></li>
-                                        <li><a href="product-single.html">Mobile Single </a></li>
+                                        <li><a href="product-list.php">Mobile List</a></li>
+                                        <li><a href="product-details.php">Mobile Single </a></li>
                                     </ul>
                                 </li>
                                 <li><a href="about.html">About</a>
@@ -102,4 +102,4 @@
 </header>
 
 <?php $content = ob_get_clean(); ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');

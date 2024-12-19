@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2024 15:55:48 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

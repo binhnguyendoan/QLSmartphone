@@ -520,5 +520,5 @@ include_once(__DIR__ . '/header.php');
 <?php
 $content = ob_get_clean();
 ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>
