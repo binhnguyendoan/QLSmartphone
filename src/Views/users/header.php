@@ -1,93 +1,105 @@
-<?php ob_start(); 
-
-?>
-
-<div class="header-area">
+<?php ob_start();?>
+<header>
+    <!-- top-header-->
+    <div class="top-header">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                        </ul>
-                    </div>
+                <div class="col-lg-8 col-md-7 col-sm-6 hidden-xs">
+                    <p class="top-text">Flexible Delivery, Fast Delivery.</p>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End header area -->
-    
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="../public/userslte/img/logo.png"></a></h1>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
-    
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+                    <ul>
+                        <li>+180-123-4567</li>
+                        <li>info@demo.com</li>
+                        <li><a href="#">Help</a></li>
                     </ul>
-                </div>  
+                </div>
+            </div>
+            <!-- /.top-header-->
+        </div>
+    </div>
+    <!-- header-section-->
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                    <div class="logo">
+                        <a href="index.html"><img src="../public/userslte/images/logo.png" alt=""> </a>
+                    </div>
+                </div>
+                <!-- /.logo -->
+                <!-- search -->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="search-bg">
+                        <input type="text" class="form-control" placeholder="Search Here">
+                        <button type="Submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                <!-- /.search -->
+                <!-- account -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="account-section">
+                        <ul>
+                            <li><a href="#" class="title hidden-xs">My Account</a></li>
+                            <li class="hidden-xs">|</li>
+                            <li><a href="#" class="title hidden-xs">Register</a></li>
+                            <li><a href="#" class="title"><i class="fa fa-shopping-cart"></i> <sup class="cart-quantity">1</sup></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.account -->
+                </div>
+                <!-- search -->
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+        <!-- navigation -->
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!-- navigations-->
+                        <div id="navigation">
+                            <ul>
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="has-sub"><a href="#">Mobiles</a>
+                                    <ul>
+                                        <li><a href="product-list.html">Mobile List</a></li>
+                                        <li><a href="product-single.html">Mobile Single </a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a>
+                                </li>
+                                <li class="has-sub"><a href="#">Pages</a>
+                                    <ul>
+                                        <li><a href="checkout.html">Checkout Form</a></li>
+                                        <li><a href="cart.html">Cart</a> </li>
+                                        <li><a href="login-form.html">Login</a> </li>
+                                        <li><a href="signup-form.html">Signup</a> </li>
+                                        <li><a href="404-page.html">404-page</a> </li>
+                                        <li><a href="styleguide.html">styleguide</a> </li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub"><a href="#">Blog</a>
+                                    <ul>
+                                        <li><a href="blog-default.html">Blog Default</a></li>
+                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a>
+                                </li>
+                                <li><a href="template-feature.html">Template Feature</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.navigations-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. header-section-->
+</header>
 
 <?php $content = ob_get_clean(); ?>
-<?php include(__DIR__ . '/../../../templates/layout_template.php'); ?>
+<?php include(__DIR__ . '/../../../templates/layout_user_home.php');

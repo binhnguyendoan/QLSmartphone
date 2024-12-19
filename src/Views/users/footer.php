@@ -1,84 +1,100 @@
 <?php ob_start(); ?>
 
-<div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
+<footer>
+    <!-- footer -->
+    <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <!-- footer-company-links -->
+                <!-- footer-contact links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Contact Info </h3>
+                        <div class="contact-info">
+                            <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+                            <span class="contact-text">1683 Pickens Way Sherman,<br>
+                                Bird Street Albuquerque
+                                Us 75090</span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-icon"><i class="fa fa-phone"></i></span>
+                            <span class="contact-text">+180-123-4567 / 89</span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+                            <span class="contact-text">info@demo.com</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
-                        </ul>                        
+                <!-- /.footer-useful-links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <ul class="arrow">
+                            <li><a href="#">Home </a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Mobiles</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
                     </div>
                 </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
-                            <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
-                        </ul>                        
+                <!-- /.footer-useful-links -->
+                <!-- footer-policy-list-links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Policy Info</h3>
+                        <ul class="arrow">
+                            <li><a href="#">Payments</a></li>
+                            <li><a href="#">Cancellation &amp; Returns</a></li>
+                            <li><a href="#">Shipping and Delivery</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">T &amp; C</a></li>
+                        </ul>
                     </div>
                 </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Type your email">
-                                <input type="submit" value="Subscribe">
-                            </form>
+                <!-- /.footer-policy-list-links -->
+                <!-- footer-social links -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Connect With Us</h3>
+                        <div class="ft-social">
+                            <span><a href="#" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a></span>
+                            <span><a href="#" class="btn-social btn-twitter"><i class="fa fa-twitter"></i></a></span>
+                            <span><a href="#" class="btn-social btn-googleplus"><i class="fa fa-google-plus"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-pinterest"><i class="fa fa-pinterest-p"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-instagram"><i class="fa fa-instagram"></i></a></span>
                         </div>
                     </div>
                 </div>
+                <!-- /.footer-social links -->
             </div>
         </div>
-    </div> <!-- End footer top area -->
-    
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; 2015 uCommerce. All Rights Reserved.</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-paypal"></i>
-                        <i class="fa fa-cc-visa"></i>
+        <!-- tiny-footer -->
+        <div class="tiny-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="payment-method alignleft">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-cc-paypal fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-mastercard  fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-visa fa-2x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-discover fa-2x"></i></a></li>
+                            </ul>
+                        </div>
+                        <p class="alignright">Copyright © All Rights Reserved 2020 Template Design by
+                            <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a>
+                        </p>
                     </div>
                 </div>
             </div>
+            <!-- /. tiny-footer -->
         </div>
-    </div> <!-- End footer bottom area -->
+    </div>
+    <!-- /.footer -->
+</footer>
 
 <?php $content = ob_get_clean(); ?>
-<?php include(__DIR__ . '/../../../templates/layout_template.php'); ?>
+<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
