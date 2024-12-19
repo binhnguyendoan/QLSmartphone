@@ -16,10 +16,7 @@ class UserController extends Controller
 
     public function index()
     {
-        // Fetch all posts and display them in a view
-        $users = $this->postModel->getAllUsers();
-
-        $this->render('users\user-list', ['users' => $users]);
+        $this->render('users\home', []);
     }
 
     public function show($UserId)
