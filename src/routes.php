@@ -18,14 +18,9 @@ $router = new Router();
 
 
 $router->addRoute('/\//', [new UserController(), 'index']);
-$router->addRoute('/\/user/', [new UserController(), 'index']);
-$router->addRoute('/\/user\/index/', [new UserController(), 'index']);
-$router->addRoute('/\/user\/show\/(\d+)/', [new UserController(), 'show']);
-$router->addRoute('/\/user\/create/', [new UserController(), 'create']);
-$router->addRoute('/\/user\/update\/(\d+)/', [new UserController(), 'update']);
-$router->addRoute('/\/user\/delete\/(\d+)/', [new UserController(), 'delete']);
 
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);
 $router->addRoute('/\/admin\/dashboard/', [new AdminController(), 'dashboard']);
 $router->addRoute('/\/logout/', [new AdminController(), 'logout']);
+
