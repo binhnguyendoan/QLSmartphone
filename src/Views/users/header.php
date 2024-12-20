@@ -25,7 +25,7 @@
                 <!-- logo -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                     <div class="logo">
-                        <a href="index.html"><img src="../public/userslte/images/logo.png" alt=""> </a>
+                        <a href="/"><img src="../public/userslte/images/logo.png" alt=""> </a>
                     </div>
                 </div>
                 <!-- /.logo -->
@@ -61,19 +61,19 @@
                         <!-- navigations-->
                         <div id="navigation">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="active"><a href="/">Home</a></li>
                                 <li class="has-sub"><a href="#">Mobiles</a>
                                     <ul>
-                                        <li><a href="product-list.php">Mobile List</a></li>
-                                        <li><a href="product-details.php">Mobile Single </a></li>
+                                        <li><a href="/productList">Mobile List</a></li>
+                                        <li><a href="/productDetails">Mobile Single </a></li>
                                     </ul>
                                 </li>
                                 <li><a href="about.html">About</a>
                                 </li>
                                 <li class="has-sub"><a href="#">Pages</a>
                                     <ul>
-                                        <li><a href="checkout.html">Checkout Form</a></li>
-                                        <li><a href="cart.html">Cart</a> </li>
+                                        <li><a href="/checkout">Checkout Form</a></li>
+                                        <li><a href="/cart">Cart</a> </li>
                                         <li><a href="login-form.html">Login</a> </li>
                                         <li><a href="signup-form.html">Signup</a> </li>
                                         <li><a href="404-page.html">404-page</a> </li>

@@ -1,5 +1,5 @@
 <?php ob_start();
-include_once(__DIR__ . '/header.php');
+include(__DIR__ . '/header.php');
 ?>
 <!-- main -->
 <main>
@@ -113,6 +113,9 @@ include_once(__DIR__ . '/header.php');
   </div>
   <!-- /.login-form -->
 </main>
+<?php include_once(__DIR__ . '/footer.php'); ?>
+<?php
+$content = ob_get_clean();
 ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>

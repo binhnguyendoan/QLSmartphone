@@ -1,5 +1,5 @@
 <?php ob_start();
-include_once(__DIR__ . '/header.php');
+include(__DIR__ . '/header.php');
 ?>
 
 <!-- slider -->
@@ -38,7 +38,7 @@ include_once(__DIR__ . '/header.php');
                                 <h1 class="slider-title">Google Pixel 2</h1>
                                 <p class="hidden-xs">The latest Qualcomm Snapdragon 835 processor | Water-resistant metal unibody | Up to 7 hours of battery.</p>
                                 <p class="slider-price">$ 938.10</p>
-                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Download Free Template</a>
+                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ include_once(__DIR__ . '/header.php');
                                     <br> | 64 GB &amp; 256 GB ROM Memory
                                 </p>
                                 <p class="slider-price">$759.64</p>
-                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Download Now</a>
+                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
                             </div>
                         </div>
                     </div>
