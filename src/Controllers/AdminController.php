@@ -2,10 +2,8 @@
 
 namespace App\Controllers;
 
-
 use App\Models\Admin;
 use App\Controller;
-
 
 class AdminController extends Controller
 {
@@ -20,7 +18,6 @@ class AdminController extends Controller
     {
         $this->render('admin\login_admin', []);
     }
-
 
     public function login()
     {
