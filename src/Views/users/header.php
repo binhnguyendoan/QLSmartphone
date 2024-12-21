@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <header>
     <!-- top-header-->
     <div class="top-header">
@@ -32,8 +32,10 @@
                 <!-- search -->
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="search-bg">
-                        <input type="text" class="form-control" placeholder="Search Here">
-                        <button type="Submit"><i class="fa fa-search"></i></button>
+                        <form action="/search" method="POST"> <!-- Thay đổi action nếu cần -->
+                            <input type="text" name="key" class="form-control" placeholder="Search Here" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : ''); ?>">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                 </div>
                 <!-- /.search -->

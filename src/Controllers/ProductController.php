@@ -2,21 +2,23 @@
 
 namespace App\Controllers;
 
-use App\Models\Admin;
+use App\Models\ProductModels;
 use App\Controller;
 
 class ProductController extends Controller
 {
-  private $postModel;
-
+  private $productModel;
+  
   public function __construct()
   {
-    $this->postModel = new Admin();
+    $this->productModel = new ProductModels();
   }
 
   public function productList()
   {
-    $this->render('users/product-list', []);
+    $sort = $_GET['sort'] ?? null; // Lấy giá trị sort từ query string
+    $products = $this->productModel->getAllProducts('', 9, 0, $sort);
+    $this->render('users/product-list', ['products' => $products]);
   }
 
   public function productDetails()

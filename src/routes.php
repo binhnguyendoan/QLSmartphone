@@ -25,6 +25,7 @@ $router->addRoute('/\/productList/', [new ProductController(), 'productList']);
 $router->addRoute('/\/productDetails/', [new ProductController(), 'productDetails']);
 $router->addRoute('/\/cart/', [new CartController(), 'cart']);
 $router->addRoute('/\/checkout/', [new CheckoutController(), 'checkout']);
+$router->addRoute('/\/search/', [new ProductController, 'productList']);
 //admin
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);
