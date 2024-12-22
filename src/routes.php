@@ -18,9 +18,11 @@ $router = new Router();
 
 
 $router->addRoute('/\//', [new UserController(), 'index']);
-
+// admin
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);
 $router->addRoute('/\/admin\/dashboard/', [new AdminController(), 'dashboard']);
 $router->addRoute('/\/logout/', [new AdminController(), 'logout']);
+// admin Category
 
+$router->addRoute('/\/admin\/category/', [new AdminController(), 'showCategory']);

@@ -37,8 +37,8 @@ class AdminController extends Controller
             if ($admin) {
                 $_SESSION['admin'] = [
                     'id' => $admin['id'],
-                    'name' => $admin['name'],
-                    'image' => $admin['image']
+                    'name' => $admin['Name'],
+                    'image' => $admin['Image']
                 ];
                 print_r($_SESSION['admin']);
                 header("Location: /admin/dashboard");
