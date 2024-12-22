@@ -30,3 +30,10 @@ $router->addRoute('/\/admin\/create-category/', [new AdminController(), 'addCate
 $router->addRoute('/\/admin\/update-category/', [new AdminController(), 'updateCategory']);
 $router->addRoute('/\/admin\/edit-category\/(\d+)/', [new AdminController(), 'editCategory']);
 $router->addRoute('/\/admin\/delete-category\/(\d+)/', [new AdminController(), 'deleteCategory']);
+
+// admin Brand
+$router->addRoute('/\/admin\/brand/', [new AdminController(), 'getBrand']);
+$router->addRoute('/\/admin\/create-brand/', [new AdminController(), 'addBrand']);
+$router->addRoute('/\/admin\/update-brand/', [new AdminController(), 'updateBrand']);
+$router->addRoute('/\/admin\/edit-brand\/(\d+)/', [new AdminController(), 'editBrand']);
+$router->addRoute('/\/admin\/delete-brand\/(\d+)/', [new AdminController(), 'deleteBrand']);

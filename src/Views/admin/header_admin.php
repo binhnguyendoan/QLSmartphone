@@ -331,7 +331,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/category"><i class="fa fa-circle-o"></i>Danh mục sản phẩm</a></li>
-                        <li><a href="index2.html"><i class="fa fa-circle-o"></i>Thương hiệu</a></li>
+                        <li><a href="/admin/brand"><i class="fa fa-circle-o"></i>Thương hiệu</a></li>
                         <li><a href="index2.html"><i class="fa fa-circle-o"></i>Sản phẩm</a></li>
                     </ul>
                 </li>

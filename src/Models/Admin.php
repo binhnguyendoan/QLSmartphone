@@ -36,6 +36,8 @@ class Admin
 
         return false;
     }
+
+    //category
     public function getCategories()
     {
         $sql = "SELECT * FROM category";
@@ -86,7 +88,55 @@ class Admin
         $stmt->bind_param("i", $catId);
         return $stmt->execute();
     }
-    
+
+    //brand
+    public function getBrand()
+    {
+        $sql = "SELECT * FROM brand";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        return [];
+    }
+
+    public function addBrand($name)
+    {
+        $sql = "INSERT INTO brand (brandName) VALUES (?)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("s", $name);
+        return $stmt->execute();
+    }
+
+    public function getBrandById($catId)
+    {
+        $sql = "SELECT * FROM brand WHERE brandId = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $catId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc(); 
+        }
+
+        return false; 
+    }
+    public function updateBrand($catId, $name)
+    {
+        $sql = "UPDATE brand SET brandName = ? WHERE brandId = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("si", $name, $catId);
+        return $stmt->execute();
+    }
+    public function deleteBrand($catId)
+    {
+        $sql = "DELETE FROM brand WHERE brandId = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $catId);
+        return $stmt->execute();
+    }
 
 
 }

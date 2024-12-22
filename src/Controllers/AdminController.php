@@ -141,6 +141,72 @@ class AdminController extends Controller
     exit;
 }
 
+//brand
+public function getBrand()
+{
+    $this->checkAuth();
+    $brand =  $this->adminModel->getBrand();
+    $this->render('admin\brand', ['brand' => $brand]);
+  
+}
+public function addBrand(){
+    $this->checkAuth();
+    $this->render('admin\add_brand', []);
+}
+public function updateBrand(){
+    $this->checkAuth();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = $_POST['Brandname'] ?? '';
+        var_dump($name);
+        if (!empty($name)) {
+            $success = $this->adminModel->addBrand($name);
+            if ($success) {
+                $_SESSION['message'] = 'Category added successfully!';
+                header("Location: /admin/brand"); 
+                exit;
+            } else {
+                $_SESSION['error'] = 'Failed to add category. Please try again.';
+            }
+        } else {
+            $_SESSION['error'] = 'Category name cannot be empty.';
+        }
+    }
+}
+public function editBrand($catId){
+    $this->checkAuth();
+    $brand = $this->adminModel->getBrandById($catId);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $categoryName = $_POST['name'] ?? '';
+        if (!empty($categoryName)) {
+            $success = $this->adminModel->updateBrand($catId, $categoryName);
+            
+            if ($success) {
+                $_SESSION['message'] = 'Category updated successfully!';
+                header("Location: /admin/brand");  
+                exit;
+            } else {
+                $_SESSION['error'] = 'Failed to update category. Please try again.';
+            }
+        } else {
+            $_SESSION['error'] = 'Category name cannot be empty.';
+        }
+    }
+    $this->render('admin\edit_brand', ['brand' => $brand]);
+}
+
+public function deleteBrand($catId)
+{
+    $this->checkAuth();
+    $deleted = $this->adminModel->deleteBrand($catId);
+    if ($deleted) {
+        $_SESSION['message'] = 'Category deleted successfully!';
+    } else {
+        $_SESSION['error'] = 'Failed to delete category. Please try again.';
+    }
+    header("Location: /admin/brand");
+    exit;
+}
+
 
 
 }
