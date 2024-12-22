@@ -91,7 +91,7 @@ include_once(__DIR__ . '/header.php');
               </div>
             </div>
           </div>
-          <a href="#" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
+          <a href="/productList" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
         </div>
         <!-- cart-total -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

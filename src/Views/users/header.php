@@ -64,13 +64,12 @@
                         <div id="navigation">
                             <ul>
                                 <li class="active"><a href="/">Home</a></li>
-                                <li class="has-sub"><a href="#">Mobiles</a>
-                                    <ul>
+                                <li><a href="/productList">Mobiles</a>
+                                    <!-- <ul>
                                         <li><a href="/productList">Mobile List</a></li>
                                         <li><a href="/productDetails">Mobile Single </a></li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
-                                <li><a href="about.html">About</a>
                                 </li>
                                 <li class="has-sub"><a href="#">Pages</a>
                                     <ul>
@@ -79,18 +78,15 @@
                                         <li><a href="login-form.html">Login</a> </li>
                                         <li><a href="signup-form.html">Signup</a> </li>
                                         <li><a href="404-page.html">404-page</a> </li>
-                                        <li><a href="styleguide.html">styleguide</a> </li>
                                     </ul>
                                 </li>
-                                <li class="has-sub"><a href="#">Blog</a>
+                                <!-- <li class="has-sub"><a href="#">Blog</a>
                                     <ul>
                                         <li><a href="blog-default.html">Blog Default</a></li>
                                         <li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li><a href="contact-us.html">Contact Us</a>
-                                </li>
-                                <li><a href="template-feature.html">Template Feature</a>
                                 </li>
                             </ul>
                         </div>

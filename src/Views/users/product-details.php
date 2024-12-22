@@ -69,8 +69,7 @@ include_once(__DIR__ . '/header.php');
                         <input type="number" class="input-text qty text" step="1" min="1" max="6" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-shopping-cart"></i>&nbsp;Add to cart</button>
-
+                    <button type="button" class="btn btn-default" onclick="window.location.href='/cart'"><i class="fa fa-shopping-cart"></i>&nbsp;Add to cart</button>
                   </div>
                 </div>
               </div>

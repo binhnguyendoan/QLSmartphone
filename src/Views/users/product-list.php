@@ -29,7 +29,7 @@ include_once(__DIR__ . '/header.php');
             <ul>
               <li class='has-sub'><a href='#'>CATEGORY</a>
                 <ul>
-                  <?php foreach ($categories as $category) {?>
+                  <?php foreach ($categories as $category) { ?>
                     <li><a href='?catId=<?= $category['catId'] ?>'><?= $category['catName'] ?></a></li>
                   <?php } ?>
                 </ul>
@@ -227,24 +227,26 @@ include_once(__DIR__ . '/header.php');
           </div>
           <div class="row">
             <!-- product -->
-            <?php 
-            foreach ($products as $product){ ?>
-              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                <div class="product-block">
-                  <div class="product-img"><img src="../public/userslte/images/<?= $product['image'] ?>" alt=""></div>
-                  <div class="product-content">
-                    <h5><a href="#" class="product-title"><?= $product['productName'] ?></a></h5>
-                    <div class="product-meta"><a href="#" class="product-price">$<?= $product['price'] ?></a>
-                      <a href="#" class="discounted-price">$<?= $product['price_sale'] ?></a>
-                      <span class="offer-price"><?= $product['offer_price'] ?>%off</span>
-                    </div>
-                    <div class="shopping-btn">
-                      <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                      <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+            <?php
+            foreach ($products as $product) { ?>
+              <a href="/productDetails">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+                  <div class="product-block">
+                    <div class="product-img"><img src="../public/userslte/images/<?= $product['image'] ?>" alt=""></div>
+                    <div class="product-content">
+                      <h5><a href="/productDetails" class="product-title"><?= $product['productName'] ?></a></h5>
+                      <div class="product-meta"><a href="#" class="product-price">$<?= $product['price'] ?></a>
+                        <a href="/productDetails" class="discounted-price">$<?= $product['price_sale'] ?></a>
+                        <span class="offer-price"><?= $product['offer_price'] ?>%off</span>
+                      </div>
+                      <div class="shopping-btn">
+                        <a href="/productDetails" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                        <a href="/productDetails" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             <?php } ?>
             <!-- /.product -->
             <div class="row">
@@ -254,7 +256,7 @@ include_once(__DIR__ . '/header.php');
                   <ul class="pagination">
                     <li><a href="#" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a></li>
                     <?php for ($i = 1; $i <= $count; $i++): ?>
-                      <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?>  <!-- lấy ra trang hiện tại  -->
+                      <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?> <!-- lấy ra trang hiện tại  -->
                       <li class="<?= ($i === $page) ? 'active' : ''; ?>"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
                     <?php endfor; ?>
                     <li><a href="#" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a></li>
