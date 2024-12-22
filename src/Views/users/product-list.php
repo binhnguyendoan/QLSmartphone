@@ -29,9 +29,9 @@ include_once(__DIR__ . '/header.php');
             <ul>
               <li class='has-sub'><a href='#'>CATEGORY</a>
                 <ul>
-                  <li><a href='#'>Smart Phones</a></li>
-                  <li><a href='#'>Cell Phones</a></li>
-                  <li class='last'><a href='#'>Android Phones</a></li>
+                  <?php foreach ($categories as $category) {?>
+                    <li><a href='?catId=<?= $category['catId'] ?>'><?= $category['catName'] ?></a></li>
+                  <?php } ?>
                 </ul>
               </li>
               <li class='has-sub'><a href='#'>Brand</a>
@@ -227,7 +227,8 @@ include_once(__DIR__ . '/header.php');
           </div>
           <div class="row">
             <!-- product -->
-            <?php foreach ($products as $product): ?>
+            <?php 
+            foreach ($products as $product){ ?>
               <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                 <div class="product-block">
                   <div class="product-img"><img src="../public/userslte/images/<?= $product['image'] ?>" alt=""></div>
@@ -244,7 +245,7 @@ include_once(__DIR__ . '/header.php');
                   </div>
                 </div>
               </div>
-            <?php endforeach; ?>
+            <?php } ?>
             <!-- /.product -->
             <div class="row">
               <!-- pagination start -->
@@ -253,8 +254,8 @@ include_once(__DIR__ . '/header.php');
                   <ul class="pagination">
                     <li><a href="#" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a></li>
                     <?php for ($i = 1; $i <= $count; $i++): ?>
-                      <!-- <?php $page = isset($_GET['trang']) ? (int)$_GET['trang'] : 1; ?> lấy ra trang hiện tại -->
-                      <li class="<?= ($i === $page) ? 'active' : ''; ?>"><a href="?trang=<?= $i ?>"><?= $i ?></a></li>
+                      <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?>  <!-- lấy ra trang hiện tại  -->
+                      <li class="<?= ($i === $page) ? 'active' : ''; ?>"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
                     <?php endfor; ?>
                     <li><a href="#" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a></li>
                   </ul>

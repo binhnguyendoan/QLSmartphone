@@ -24,22 +24,22 @@ class ProductModels
 
   public function getCountAllProducts(){
     $result = $this->connection->query("SELECT COUNT(*) FROM product");
-    $row = $result->fetch_row();
+    $row = $result->fetch_row(); 
     $totalProducts = $row[0];
     $pageIndex = ceil($totalProducts / 9); 
     return (int)$pageIndex; 
   }
 
-  public function getAllProducts($key = '',$limit = 9, $offset = 0, $sort = null)
+  public function getAllProducts($key = '', $catId = 0, $limit = 9, $offset = 0, $sort = null)
   {
-    if(isset($_GET['trang'])){
-      $page = $_GET['trang'];
-    }else{
+    if (isset($_GET['page'])) {
+      $page = $_GET['page'];
+    } else {
       $page = 1;
     }
-    if($page === '' || $page == 1){
+    if ($page === '' || $page == 1) {
       $offset = 0;
-    }else {
+    } else {
       $offset = ($page * 9) - $limit;
     }
 
@@ -59,15 +59,15 @@ class ProductModels
     $stmt = $this->connection->prepare("
           SELECT *
           FROM product
-          WHERE productName LIKE ?
+          WHERE catId = ? OR ? is null OR ? = '' AND productName LIKE ?
           $orderBy
           LIMIT ? OFFSET ?
       ");
     // Tạo giá trị cho tham số tìm kiếm
     $searchParam = '%' . $key . '%';
     // Liên kết tham số
-    //sii: seach, limit, offset
-    $stmt->bind_param('sii', $searchParam, $limit, $offset);
+    //isii: int,string,int,int
+    $stmt->bind_param('iiisii', $catId,$catId,$catId,$searchParam, $limit, $offset);
     // Thực thi câu lệnh
     $stmt->execute();
     // Lấy kết quả

@@ -4,26 +4,32 @@ namespace App\Controllers;
 
 use App\Models\ProductModels;
 use App\Controller;
+use App\Models\CategoryModels;
 
 class ProductController extends Controller
 {
   private $productModel;
+  private $categoryModel;
   
   public function __construct()
   {
     $this->productModel = new ProductModels();
+    $this->categoryModel = new CategoryModels();
   }
 
   public function productList()
   {
     $sort = $_GET['sort'] ?? null; // Lấy giá trị sort từ query string
-    $products = $this->productModel->getAllProducts('', 9, 0, $sort);
+    $catId = $_GET['catId'] ?? null;
+    $products = $this->productModel->getAllProducts('',$catId, 9, 0, $sort);
     $count = $this->productModel->getCountAllProducts(); // Lấy số lượng sản phẩm
-    $this->render('users/product-list', ['products' => $products,'count' => $count]);
+    $categories = $this->categoryModel->getAllCategories();
+    $this->render('users/product-list', ['products' => $products,'count' => $count,'categories'=> $categories]);
   }
 
   public function productDetails()
   {
     $this->render('users/product-details', []);
   }
+
 }

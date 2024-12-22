@@ -31,18 +31,18 @@ include_once(__DIR__ . '/header.php');
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                   <ul id="demo1_thumbs" class="slideshow_thumbs">
                     <li>
-                      <a href="images/thumb_big_1.jpg">
-                        <div class=" thumb-img"><img src="images/thumb_1.jpg" alt=""></div>
+                      <a href="../public/userslte/images/thumb_big_1.jpg">
+                        <div class=" thumb-img"><img src="../public/userslte/images/thumb_1.jpg" alt=""></div>
                       </a>
                     </li>
                     <li>
-                      <a href="images/thumb_big_2.jpg">
-                        <div class=" thumb-img"><img src="images/thumb_2.jpg" alt=""></div>
+                      <a href="../public/userslte/images/thumb_big_2.jpg">
+                        <div class=" thumb-img"><img src="../public/userslte/images/thumb_2.jpg" alt=""></div>
                       </a>
                     </li>
                     <li>
-                      <a href="images/thumb_big_3.jpg" alt="">
-                        <div class=" thumb-img"><img src="images/thumb_3.jpg" alt=""></div>
+                      <a href="../public/userslte/images/thumb_big_3.jpg" alt="">
+                        <div class=" thumb-img"><img src="../public/userslte/images/thumb_3.jpg" alt=""></div>
                       </a>
                     </li>
                   </ul>
@@ -276,8 +276,6 @@ include_once(__DIR__ . '/header.php');
                         <div class="review-rating">
                           <h5>Your Rating : &nbsp;</h5>
                           <div class="star-rate" id="rateYo"></div>
-
-
                         </div>
                       </div>
                       <form>
@@ -309,31 +307,7 @@ include_once(__DIR__ . '/header.php');
           </div>
         </div>
         <!-- /.reviews-form -->
-
-
-
-
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
     <!-- /.product-description -->
     <div class="container">
@@ -350,7 +324,7 @@ include_once(__DIR__ . '/header.php');
             <!-- product -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
               <div class="product-block">
-                <div class="product-img"><img src="images/product_img_1.png" alt=""></div>
+                <div class="product-img"><img src="../public/userslte/images/product_img_1.png" alt=""></div>
                 <div class="product-content">
                   <h5><a href="#" class="product-title">Google Pixel <strong>(128GB, Black)</strong></a></h5>
                   <div class="product-meta"><a href="#" class="product-price">$1100</a>
@@ -368,7 +342,7 @@ include_once(__DIR__ . '/header.php');
             <!-- product -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
               <div class="product-block">
-                <div class="product-img"><img src="images/product_img_2.png" alt=""></div>
+                <div class="product-img"><img src="../public/userslte/images/product_img_2.png" alt=""></div>
                 <div class="product-content">
                   <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a></h5>
                   <div class="product-meta"><a href="#" class="product-price">$1200</a>
@@ -386,7 +360,7 @@ include_once(__DIR__ . '/header.php');
             <!-- product -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
               <div class="product-block">
-                <div class="product-img"><img src="images/product_img_3.png" alt=""></div>
+                <div class="product-img"><img src="../public/userslte/images/product_img_3.png" alt=""></div>
                 <div class="product-content">
                   <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
                   <div class="product-meta"><a href="#" class="product-price">$1500</a>
@@ -404,7 +378,7 @@ include_once(__DIR__ . '/header.php');
             <!-- product -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
               <div class="product-block">
-                <div class="product-img"><img src="images/product_img_4.png" alt=""></div>
+                <div class="product-img"><img src="../public/userslte/images/product_img_4.png" alt=""></div>
                 <div class="product-content">
                   <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte Black)</strong></a></h5>
                   <div class="product-meta"><a href="#" class="product-price">$1500</a>
@@ -433,3 +407,28 @@ $content = ob_get_clean();
 ?>
 <?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>
+<script type="text/javascript" src="../public/userslte/js/scrolling-nav.js"></script>
+<script type="text/javascript" src="../public/userslte/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../public/userslte/js/jquery.rateyo.min.js"></script>
+<script src="../public/userslte/js/jquery.desoslide.js"></script>
+<script type="text/javascript">
+  $('#slideshow').desoSlide({
+    thumbs: $('ul.slideshow_thumbs li > a'),
+    effect: {
+      provider: 'animate',
+      name: 'fade'
+    }
+
+  });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+
+    $("#rateYo").rateYo({
+      rating: 3.6,
+      starWidth: "16px"
+    });
+
+  });
+</script>

@@ -5,6 +5,7 @@ use App\Controllers\UserController;
 use App\Controllers\AdminController;
 use App\Controllers\ProductController;
 use App\Controllers\CartController;
+use App\Controllers\CategoryController;
 use App\Controllers\CheckoutController;
 
 // Usage:
@@ -25,7 +26,7 @@ $router->addRoute('/\/productList/', [new ProductController(), 'productList']);
 $router->addRoute('/\/productDetails/', [new ProductController(), 'productDetails']);
 $router->addRoute('/\/cart/', [new CartController(), 'cart']);
 $router->addRoute('/\/checkout/', [new CheckoutController(), 'checkout']);
-$router->addRoute('/\/search/', [new ProductController, 'productList']);
+$router->addRoute('/\/search/', [new ProductController(), 'productList']);
 //admin
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);
