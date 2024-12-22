@@ -24,11 +24,25 @@ class ProductModels
 
   public function getCountAllProducts(){
     $result = $this->connection->query("SELECT COUNT(*) FROM product");
-    return $result->fetch_all(MYSQLI_ASSOC);
+    $row = $result->fetch_row();
+    $totalProducts = $row[0];
+    $pageIndex = ceil($totalProducts / 9); 
+    return (int)$pageIndex; 
   }
 
-  public function getAllProducts($key = '', $limit = 9, $offset = 0, $sort = null)
+  public function getAllProducts($key = '',$limit = 9, $offset = 0, $sort = null)
   {
+    if(isset($_GET['trang'])){
+      $page = $_GET['trang'];
+    }else{
+      $page = 1;
+    }
+    if($page === '' || $page == 1){
+      $offset = 0;
+    }else {
+      $offset = ($page * 9) - $limit;
+    }
+
     if (isset($_POST['key'])) {
       $key = $_POST['key'];
     } else {

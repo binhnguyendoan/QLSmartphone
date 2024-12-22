@@ -22,7 +22,7 @@ include_once(__DIR__ . '/header.php');
   <!-- product-list -->
   <div class="content">
     <div class="container">
-      <div class="row"> 
+      <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
           <!-- sidenav-section -->
           <div id='cssmenu'>
@@ -247,15 +247,16 @@ include_once(__DIR__ . '/header.php');
             <?php endforeach; ?>
             <!-- /.product -->
             <div class="row">
-              <!-- pagination start --> 
+              <!-- pagination start -->
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="st-pagination">
                   <ul class="pagination">
-                    <li><a href="#" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a> </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li> <a href="#" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a> </li>
+                    <li><a href="#" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a></li>
+                    <?php for ($i = 1; $i <= $count; $i++): ?>
+                      <!-- <?php $page = isset($_GET['trang']) ? (int)$_GET['trang'] : 1; ?> lấy ra trang hiện tại -->
+                      <li class="<?= ($i === $page) ? 'active' : ''; ?>"><a href="?trang=<?= $i ?>"><?= $i ?></a></li>
+                    <?php endfor; ?>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -276,28 +277,28 @@ $content = ob_get_clean();
 <?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>
 <script type="text/javascript">
-    (function($) {
-        $(document).ready(function() {
-            $('#cssmenu ul ul li:odd').addClass('odd');
-            $('#cssmenu ul ul li:even').addClass('even');
-            $('#cssmenu > ul > li > a').click(function() {
-                $('#cssmenu li').removeClass('active');
-                $(this).closest('li').addClass('active');
-                var checkElement = $(this).next();
-                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-                    $(this).closest('li').removeClass('active');
-                    checkElement.slideUp('normal');
-                }
-                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
-                    $('#cssmenu ul ul:visible').slideUp('normal');
-                    checkElement.slideDown('normal');
-                }
-                if ($(this).closest('li').find('ul').children().length == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-    })(jQuery);
-    </script>
+  (function($) {
+    $(document).ready(function() {
+      $('#cssmenu ul ul li:odd').addClass('odd');
+      $('#cssmenu ul ul li:even').addClass('even');
+      $('#cssmenu > ul > li > a').click(function() {
+        $('#cssmenu li').removeClass('active');
+        $(this).closest('li').addClass('active');
+        var checkElement = $(this).next();
+        if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+          $(this).closest('li').removeClass('active');
+          checkElement.slideUp('normal');
+        }
+        if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+          $('#cssmenu ul ul:visible').slideUp('normal');
+          checkElement.slideDown('normal');
+        }
+        if ($(this).closest('li').find('ul').children().length == 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    });
+  })(jQuery);
+</script>

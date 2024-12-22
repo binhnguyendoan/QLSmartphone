@@ -45,7 +45,6 @@
     <script type="text/javascript" src="../public/userslte/js/multiple-carousel.js"></script>
 </body>
 
-
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2024 15:56:08 GMT -->
 
 </html>
