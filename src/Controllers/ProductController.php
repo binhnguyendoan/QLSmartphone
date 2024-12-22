@@ -18,7 +18,8 @@ class ProductController extends Controller
   {
     $sort = $_GET['sort'] ?? null; // Lấy giá trị sort từ query string
     $products = $this->productModel->getAllProducts('', 9, 0, $sort);
-    $this->render('users/product-list', ['products' => $products]);
+    $count = $this->productModel->getCountAllProducts(); // Lấy số lượng sản phẩm
+    $this->render('users/product-list', ['products' => $products,'count' => $count]);
   }
 
   public function productDetails()
