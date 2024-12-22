@@ -25,4 +25,8 @@ $router->addRoute('/\/admin\/dashboard/', [new AdminController(), 'dashboard']);
 $router->addRoute('/\/logout/', [new AdminController(), 'logout']);
 // admin Category
 
-$router->addRoute('/\/admin\/category/', [new AdminController(), 'showCategory']);
+$router->addRoute('/\/admin\/category/', [new AdminController(), 'getCategory']);
+$router->addRoute('/\/admin\/create-category/', [new AdminController(), 'addCategory']);
+$router->addRoute('/\/admin\/update-category/', [new AdminController(), 'updateCategory']);
+$router->addRoute('/\/admin\/edit-category\/(\d+)/', [new AdminController(), 'editCategory']);
+$router->addRoute('/\/admin\/delete-category\/(\d+)/', [new AdminController(), 'deleteCategory']);

@@ -9,11 +9,11 @@ use App\Controller;
 
 class AdminController extends Controller
 {
-    private $postModel;
+    private $adminModel;
 
     public function __construct()
     {
-        $this->postModel = new Admin();
+        $this->adminModel = new Admin();
     }
 
     public function index()
@@ -72,4 +72,75 @@ class AdminController extends Controller
         header("Location: /admin/login");
         exit;
     }
+
+    public function getCategory()
+    {
+        $this->checkAuth();
+        $categories =  $this->adminModel->getCategories();
+        $this->render('admin\category', ['categories' => $categories]);
+      
+    }
+
+    public function addCategory(){
+        $this->checkAuth();
+        $this->render('admin\add_category', []);
+    }
+    public function updateCategory(){
+        $this->checkAuth();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $_POST['name'] ?? '';
+            var_dump($name);
+            if (!empty($name)) {
+                $success = $this->adminModel->addCategory($name);
+                if ($success) {
+                    $_SESSION['message'] = 'Category added successfully!';
+                    header("Location: /admin/category"); 
+                    exit;
+                } else {
+                    $_SESSION['error'] = 'Failed to add category. Please try again.';
+                }
+            } else {
+                $_SESSION['error'] = 'Category name cannot be empty.';
+            }
+        }
+    }
+
+    public function editCategory($catId){
+        $this->checkAuth();
+        $category = $this->adminModel->getCategoryById($catId);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $categoryName = $_POST['name'] ?? '';
+            if (!empty($categoryName)) {
+                $success = $this->adminModel->updateCategory($catId, $categoryName);
+                
+                if ($success) {
+                    $_SESSION['message'] = 'Category updated successfully!';
+                    header("Location: /admin/category");  
+                    exit;
+                } else {
+                    $_SESSION['error'] = 'Failed to update category. Please try again.';
+                }
+            } else {
+                $_SESSION['error'] = 'Category name cannot be empty.';
+            }
+        }
+        $this->render('admin\edit_category', ['category' => $category]);
+    }
+
+
+    public function deleteCategory($catId)
+{
+    $this->checkAuth();
+    $deleted = $this->adminModel->deleteCategory($catId);
+    if ($deleted) {
+        $_SESSION['message'] = 'Category deleted successfully!';
+    } else {
+        $_SESSION['error'] = 'Failed to delete category. Please try again.';
+    }
+    header("Location: /admin/category");
+    exit;
+}
+
+
+
 }
