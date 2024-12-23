@@ -253,12 +253,16 @@ include_once(__DIR__ . '/header.php');
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="st-pagination">
                   <ul class="pagination">
-                    <li><a href="#" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a></li>
+                    <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?> <!-- lấy ra trang hiện tại  -->
+                    <?php if ($page > 1): ?> <!-- Kiểm tra nếu không phải là trang đầu tiên -->
+                      <li><a href="?page=<?= $page - 1 ?>" aria-label="previous"><span aria-hidden="true" tabindex="-1">Previous</span></a></li>
+                    <?php endif; ?>
                     <?php for ($i = 1; $i <= $count; $i++): ?>
-                      <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?> <!-- lấy ra trang hiện tại  -->
                       <li class="<?= ($i === $page) ? 'active' : ''; ?>"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
                     <?php endfor; ?>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a></li>
+                    <?php if ($page < $count): ?> <!-- Kiểm tra nếu không phải là trang cuối cùng -->
+                      <li><a href="?page=<?= $page + 1 ?>" aria-label="Next"><span aria-hidden="true" tabindex="+1">Next</span></a></li>
+                    <?php endif; ?>
                   </ul>
                 </div>
               </div>
