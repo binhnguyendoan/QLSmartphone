@@ -63,8 +63,8 @@ include_once(__DIR__ . '/header.php');
                         <span><i class="fa fa-star-o"></i></span>
                         <span class="text-secondary">&nbsp;(4.8 Review Stars)</span>
                       </div>
-                      <p class="product-price" style="font-size: 38px;"><?= $productDetails['price'] ?> <strike><?= $productDetails['price_sale'] ?></strike></p>
-                      <p><?= $productDetails['price'] ?></p>
+                      <p class="product-price" style="font-size: 38px;">$<?= $productDetails['price'] ?> <strike>$<?= $productDetails['price_sale'] ?></strike></p>
+                      <p><?= $productDetails['desc'] ?></p>
                       <div class="product-quantity">
                         <h5>Quantity</h5>
                         <div class="quantity mb20">
@@ -331,9 +331,9 @@ include_once(__DIR__ . '/header.php');
                       <div class="product-content">
                         <h5><a href="/productDetails/<?= $product['productId'] ?>" class="product-title"><?= $product['productName'] ?></a></h5>
                         <div class="product-meta">
-                          <a href="/productDetails/<?= $product['productId'] ?>" class="product-price"><?= $product['price'] ?></a>
-                          <a href="/productDetails/<?= $product['productId'] ?>" class="discounted-price"><?= $product['price_sale'] ?></a>
-                          <span class="offer-price"><?= $product['offer_price'] ?> off</span>
+                          <a href="/productDetails/<?= $product['productId'] ?>" class="product-price">$<?= $product['price'] ?></a>
+                          <a href="/productDetails/<?= $product['productId'] ?>" class="discounted-price">$<?= $product['price_sale'] ?></a>
+                          <span class="offer-price"><?= $product['offer_price'] ?>%off</span>
                         </div>
                         <div class="shopping-btn">
                           <a href="/productDetails/<?= $product['productId'] ?>" class="product-btn btn-like"><i class="fa fa-heart"></i></a>

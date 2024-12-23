@@ -21,7 +21,8 @@ class ProductController extends Controller
   {
     $sort = $_GET['sort'] ?? null; // Lấy giá trị sort từ query string
     $catId = $_GET['catId'] ?? null;
-    $products = $this->productModel->getAllProducts('',$catId, 9, 0, $sort);
+    $searchKey = $_POST['key'] ?? ''; // Lấy giá trị tìm kiếm từ POST
+    $products = $this->productModel->getAllProducts($searchKey, $catId, 9, 0, $sort); // Truyền key vào hàm
     $count = $this->productModel->getCountAllProducts(); // Lấy số lượng sản phẩm
     $categories = $this->categoryModel->getAllCategories();
     $this->render('users/product-list', ['products' => $products,'count' => $count,'categories'=> $categories]);
@@ -35,7 +36,7 @@ class ProductController extends Controller
   public function productDetails($productId)
   {
     $productDetails = $this->productModel->getProductById($productId);
-    $relatedProducts = $this->productModel->getRelatedProducts($productDetails['catId']); // Assuming you have a category ID
+    $relatedProducts = $this->productModel->getRelatedProducts($productDetails['catId']);
     $this->render('users/product-details', ['productDetails' => $productDetails,'products' => $relatedProducts ]);
   }
 }

@@ -22,12 +22,13 @@ class ProductModels
     }
   }
 
-  public function getCountAllProducts(){
+  public function getCountAllProducts()
+  {
     $result = $this->connection->query("SELECT COUNT(*) FROM product");
-    $row = $result->fetch_row(); 
+    $row = $result->fetch_row();
     $totalProducts = $row[0];
-    $pageIndex = ceil($totalProducts / 9); 
-    return (int)$pageIndex; 
+    $pageIndex = ceil($totalProducts / 9);
+    return (int)$pageIndex;
   }
 
   public function getAllProducts($key = '', $catId = 0, $limit = 9, $offset = 0, $sort = null)
@@ -51,15 +52,15 @@ class ProductModels
     // Chuẩn bị câu lệnh SQL với tham số
     $orderBy = "ORDER BY productId"; // Mặc định
     if ($sort === 'low_price') {
-        $orderBy = "ORDER BY price ASC";
+      $orderBy = "ORDER BY price ASC";
     } elseif ($sort === 'high_price') {
-        $orderBy = "ORDER BY price DESC";
+      $orderBy = "ORDER BY price DESC";
     }
-    
+
     $stmt = $this->connection->prepare("
           SELECT *
           FROM product
-          WHERE catId = ? OR ? is null OR ? = '' AND productName LIKE ?
+          WHERE (catId = ? OR ? is null OR ? = '') AND productName LIKE ?
           $orderBy
           LIMIT ? OFFSET ?
       ");
@@ -67,7 +68,7 @@ class ProductModels
     $searchParam = '%' . $key . '%';
     // Liên kết tham số
     //isii: int,string,int,int
-    $stmt->bind_param('iiisii', $catId,$catId,$catId,$searchParam, $limit, $offset);
+    $stmt->bind_param('iiisii', $catId, $catId, $catId, $searchParam, $limit, $offset);
     // Thực thi câu lệnh
     $stmt->execute();
     // Lấy kết quả
@@ -94,12 +95,21 @@ class ProductModels
   //   return $result->fetch_all(MYSQLI_ASSOC);
   // }
 
-  public function getRelatedProducts($catId)
+  public function getRelatedProducts()
   {
-    $stmt = $this->connection->prepare("SELECT * FROM product WHERE catId = ? LIMIT 4"); // Adjust limit as needed
-    $stmt->bind_param('i', $catId);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $this->connection->query("SELECT * FROM product WHERE catId LIMIT 4");
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
+  public function getBigSaleProducts()
+  {
+    $result = $this->connection->query("SELECT * FROM product WHERE offer_price ORDER BY offer_price DESC LIMIT 4");
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
+  public function getBestSellerProduct()
+  {
+    $result = $this->connection->query("SELECT p.productId,p.productName,p.price_sale, p.price,p.offer_price,p.image FROM product p JOIN `order` o ON p.productId = o.productId GROUP BY p.productId, p.productName DESC LIMIT 4");
     return $result->fetch_all(MYSQLI_ASSOC);
   }
 }

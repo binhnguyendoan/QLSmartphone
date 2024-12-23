@@ -1,19 +1,22 @@
 <?php
 namespace App\Controllers;
-use App\Models\User;
 use App\Controller;
+use App\Models\ProductModels;
 
 class UserController extends Controller
 {
-    private $postModel;
+    private $productModel;
 
     public function __construct()
     {
-        $this->postModel = new User();
+        $this->productModel = new ProductModels();
     }
 
     public function index()
     {
-        $this->render('users\home', []);
+        $products = $this->productModel->getBigSaleProducts();
+        $bestsells = $this->productModel->getBestSellerProduct();
+        $relatedProducts = $this->productModel->getRelatedProducts();
+        $this->render('users\home', ['products' => $products,'bestsells'=> $bestsells,'relatedProducts'=> $relatedProducts]);
     }
 }
