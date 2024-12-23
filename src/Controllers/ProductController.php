@@ -36,9 +36,6 @@ class ProductController extends Controller
   {
     $productDetails = $this->productModel->getProductById($productId);
     $relatedProducts = $this->productModel->getRelatedProducts($productDetails['catId']); // Assuming you have a category ID
-    $this->render('users/product-details', [
-        'productDetails' => $productDetails,
-        'products' => $relatedProducts 
-    ]);
+    $this->render('users/product-details', ['productDetails' => $productDetails,'products' => $relatedProducts ]);
   }
 }
