@@ -46,7 +46,7 @@
                             <li><a href="#" class="title hidden-xs">My Account</a></li>
                             <li class="hidden-xs">|</li>
                             <li><a href="#" class="title hidden-xs">Register</a></li>
-                            <li><a href="#" class="title"><i class="fa fa-shopping-cart"></i> <sup class="cart-quantity">1</sup></a>
+                            <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup class="cart-quantity">1</sup></a>
                             </li>
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                                     </ul> -->
                                 </li>
                                 </li>
-                                <li class="has-sub"><a href="#">Pages</a>
+                                <!-- <li class="has-sub"><a href="#">Pages</a>
                                     <ul>
                                         <li><a href="/checkout">Checkout Form</a></li>
                                         <li><a href="/cart">Cart</a> </li>
@@ -79,7 +79,7 @@
                                         <li><a href="signup-form.html">Signup</a> </li>
                                         <li><a href="404-page.html">404-page</a> </li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <!-- <li class="has-sub"><a href="#">Blog</a>
                                     <ul>
                                         <li><a href="blog-default.html">Blog Default</a></li>

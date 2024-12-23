@@ -127,7 +127,7 @@ include_once(__DIR__ . '/header.php');
                     </tbody>
                   </table>
                 </div>
-                <button class="btn btn-primary btn-block">Proceed To Checkout</button>
+                <button class="btn btn-primary btn-block" onclick="window.location.href='/checkout'">Proceed To Checkout</button>
               </div>
             </div>
           </div>

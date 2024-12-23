@@ -23,10 +23,11 @@ $router = new Router();
 //user
 $router->addRoute('/\//', [new UserController(), 'index']);
 $router->addRoute('/\/productList/', [new ProductController(), 'productList']);
-$router->addRoute('/\/productDetails/', [new ProductController(), 'productDetails']);
+// $router->addRoute('/\/productDetails/', [new ProductController(), 'productDetails']);
 $router->addRoute('/\/cart/', [new CartController(), 'cart']);
 $router->addRoute('/\/checkout/', [new CheckoutController(), 'checkout']);
 $router->addRoute('/\/search/', [new ProductController(), 'productList']);
+$router->addRoute('/\/productDetails\/(\d+)/', [new ProductController(), 'productDetails']);
 //admin
 $router->addRoute('/\/admin\/login/', [new AdminController(), 'index']);
 $router->addRoute('/\/login/', [new AdminController(), 'login']);

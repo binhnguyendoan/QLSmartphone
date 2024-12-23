@@ -227,21 +227,20 @@ include_once(__DIR__ . '/header.php');
           </div>
           <div class="row">
             <!-- product -->
-            <?php
-            foreach ($products as $product) { ?>
-              <a href="/productDetails">
+            <?php foreach ($products as $product) { ?>
+              <a href="/productDetails/<?= $product['productId'] ?>">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                   <div class="product-block">
                     <div class="product-img"><img src="../public/userslte/images/<?= $product['image'] ?>" alt=""></div>
                     <div class="product-content">
-                      <h5><a href="/productDetails" class="product-title"><?= $product['productName'] ?></a></h5>
-                      <div class="product-meta"><a href="#" class="product-price">$<?= $product['price'] ?></a>
-                        <a href="/productDetails" class="discounted-price">$<?= $product['price_sale'] ?></a>
+                      <h5><a href="/productDetails/<?= $product['productId'] ?>" class="product-title"><?= $product['productName'] ?></a></h5>
+                      <div class="product-meta"><a href="/productDetails/<?= $product['productId'] ?>" class="product-price">$<?= $product['price'] ?></a>
+                        <a href="/productDetails/<?= $product['productId'] ?>" class="discounted-price">$<?= $product['price_sale'] ?></a>
                         <span class="offer-price"><?= $product['offer_price'] ?>%off</span>
                       </div>
                       <div class="shopping-btn">
-                        <a href="/productDetails" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                        <a href="/productDetails" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="/productDetails/<?= $product['productId'] ?>" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                        <a href="/productDetails/<?= $product['productId'] ?>" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
                       </div>
                     </div>
                   </div>

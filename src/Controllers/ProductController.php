@@ -27,9 +27,18 @@ class ProductController extends Controller
     $this->render('users/product-list', ['products' => $products,'count' => $count,'categories'=> $categories]);
   }
 
-  public function productDetails()
-  {
-    $this->render('users/product-details', []);
-  }
+  // public function productDetails()
+  // {
+  //   $this->render('users/product-details', []);
+  // }
 
+  public function productDetails($productId)
+  {
+    $productDetails = $this->productModel->getProductById($productId);
+    $relatedProducts = $this->productModel->getRelatedProducts($productDetails['catId']); // Assuming you have a category ID
+    $this->render('users/product-details', [
+        'productDetails' => $productDetails,
+        'products' => $relatedProducts 
+    ]);
+  }
 }

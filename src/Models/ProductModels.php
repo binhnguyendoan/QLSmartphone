@@ -75,6 +75,13 @@ class ProductModels
     return $result->fetch_all(MYSQLI_ASSOC);
   }
 
+  public function getProductById($productId)
+  {
+    $productId = $this->connection->real_escape_string($productId);
+    $result = $this->connection->query("SELECT * FROM product WHERE productId = $productId");
+    return $result->fetch_assoc();
+  }
+
   // public function getAllProductsSortedByPriceAsc()
   // {
   //   $result = $this->connection->query("SELECT * FROM product ORDER BY price ASC");
@@ -86,4 +93,13 @@ class ProductModels
   //   $result = $this->connection->query("SELECT * FROM product ORDER BY price Desc");
   //   return $result->fetch_all(MYSQLI_ASSOC);
   // }
+
+  public function getRelatedProducts($catId)
+  {
+    $stmt = $this->connection->prepare("SELECT * FROM product WHERE catId = ? LIMIT 4"); // Adjust limit as needed
+    $stmt->bind_param('i', $catId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
 }
