@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 24, 2024 lúc 06:44 AM
+-- Thời gian đã tạo: Th12 24, 2024 lúc 01:31 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -157,16 +157,17 @@ CREATE TABLE `order` (
   `quantity` int(11) NOT NULL,
   `price` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `date_order` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `order`
 --
 
-INSERT INTO `order` (`id`, `productId`, `productName`, `customerId`, `quantity`, `price`, `image`, `status`) VALUES
-(1, 11, 'Iphone 6s plus', 1, 10, '1100', 'product_img_7.png', 0),
-(2, 1, 'Google Pixel', 2, 12, '1200', 'product_img_1.png', 0);
+INSERT INTO `order` (`id`, `productId`, `productName`, `customerId`, `quantity`, `price`, `image`, `status`, `date_order`) VALUES
+(1, 11, 'Iphone 6s plus', 1, 10, '1100', 'product_img_7.png', 0, '2024-12-21 02:30:50'),
+(2, 1, 'Google Pixel', 2, 12, '1200', 'product_img_1.png', 0, '2024-12-24 09:20:20');
 
 -- --------------------------------------------------------
 
