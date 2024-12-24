@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <header>
     <!-- top-header-->
     <div class="top-header">
@@ -25,15 +25,17 @@
                 <!-- logo -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                     <div class="logo">
-                        <a href="index.html"><img src="../public/userslte/images/logo.png" alt=""> </a>
+                        <a href="/"><img src="../public/userslte/images/logo.png" alt=""> </a>
                     </div>
                 </div>
                 <!-- /.logo -->
                 <!-- search -->
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="search-bg">
-                        <input type="text" class="form-control" placeholder="Search Here">
-                        <button type="Submit"><i class="fa fa-search"></i></button>
+                        <form action="/search" method="POST"> <!-- Thay đổi action nếu cần -->
+                            <input type="text" name="key" class="form-control" placeholder="Search Here" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : ''); ?>">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                 </div>
                 <!-- /.search -->
@@ -44,7 +46,7 @@
                             <li><a href="#" class="title hidden-xs">My Account</a></li>
                             <li class="hidden-xs">|</li>
                             <li><a href="#" class="title hidden-xs">Register</a></li>
-                            <li><a href="#" class="title"><i class="fa fa-shopping-cart"></i> <sup class="cart-quantity">1</sup></a>
+                            <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup class="cart-quantity">1</sup></a>
                             </li>
                         </ul>
                     </div>
@@ -61,34 +63,30 @@
                         <!-- navigations-->
                         <div id="navigation">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
-                                <li class="has-sub"><a href="#">Mobiles</a>
-                                    <ul>
-                                        <li><a href="product-list.php">Mobile List</a></li>
-                                        <li><a href="product-details.php">Mobile Single </a></li>
-                                    </ul>
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/productList">Mobiles</a>
+                                    <!-- <ul>
+                                        <li><a href="/productList">Mobile List</a></li>
+                                        <li><a href="/productDetails">Mobile Single </a></li>
+                                    </ul> -->
                                 </li>
-                                <li><a href="about.html">About</a>
                                 </li>
-                                <li class="has-sub"><a href="#">Pages</a>
+                                <!-- <li class="has-sub"><a href="#">Pages</a>
                                     <ul>
-                                        <li><a href="checkout.html">Checkout Form</a></li>
-                                        <li><a href="cart.html">Cart</a> </li>
+                                        <li><a href="/checkout">Checkout Form</a></li>
+                                        <li><a href="/cart">Cart</a> </li>
                                         <li><a href="login-form.html">Login</a> </li>
                                         <li><a href="signup-form.html">Signup</a> </li>
                                         <li><a href="404-page.html">404-page</a> </li>
-                                        <li><a href="styleguide.html">styleguide</a> </li>
                                     </ul>
-                                </li>
-                                <li class="has-sub"><a href="#">Blog</a>
+                                </li> -->
+                                <!-- <li class="has-sub"><a href="#">Blog</a>
                                     <ul>
                                         <li><a href="blog-default.html">Blog Default</a></li>
                                         <li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li><a href="contact-us.html">Contact Us</a>
-                                </li>
-                                <li><a href="template-feature.html">Template Feature</a>
                                 </li>
                             </ul>
                         </div>

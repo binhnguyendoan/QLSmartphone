@@ -8,7 +8,6 @@ include_once(__DIR__ . '/header.php');
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
           <div class="page-breadcrumb">
             <ol class="breadcrumb">
               <li><a href="#">Home</a></li>
@@ -17,7 +16,6 @@ include_once(__DIR__ . '/header.php');
               <li>Cart</li>
             </ol>
           </div>
-
         </div>
       </div>
     </div>
@@ -93,7 +91,7 @@ include_once(__DIR__ . '/header.php');
               </div>
             </div>
           </div>
-          <a href="#" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
+          <a href="/productList" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
         </div>
         <!-- cart-total -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -129,7 +127,7 @@ include_once(__DIR__ . '/header.php');
                     </tbody>
                   </table>
                 </div>
-                <button class="btn btn-primary btn-block">Proceed To Checkout</button>
+                <button class="btn btn-primary btn-block" onclick="window.location.href='/checkout'">Proceed To Checkout</button>
               </div>
             </div>
           </div>
@@ -155,6 +153,9 @@ include_once(__DIR__ . '/header.php');
   </div>
   <!-- /.cart-section -->
 </main>
+<?php include_once(__DIR__ . '/footer.php'); ?>
+<?php
+$content = ob_get_clean();
 ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>
