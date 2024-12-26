@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models;
+//require_once(__DIR__ . '/../../config.php');
 
-class Admin
-
+class CategoryModels
 {
     private $connection;
 
@@ -22,18 +22,10 @@ class Admin
             die("Connection failed: " . $this->connection->connect_error);
         }
     }
-    public function login($Name, $Password)
+
+    public function getAllCategories()
     {
-        $sql = "SELECT * FROM admins WHERE Name = ? AND Password = ? LIMIT 1";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bind_param("ss", $Name, $Password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
-        }
-
-        return false;
+      $result = $this->connection->query("SELECT * FROM category order BY catId desc");
+      return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
