@@ -8,16 +8,13 @@ include_once(__DIR__ . '/header.php');
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
           <div class="page-breadcrumb">
             <ol class="breadcrumb">
-              <li><a href="#">Home</a></li>
-              <li>Product List</li>
-              <li>Product Single</li>
-              <li>Cart</li>
+            <li><a href="/home">Home</a></li>
+              <li><a href="/productList">product list</a></li>
+              <li>cart</li>
             </ol>
           </div>
-
         </div>
       </div>
     </div>
@@ -27,16 +24,19 @@ include_once(__DIR__ . '/header.php');
   <div class="space-medium">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="box">
             <div class="box-head">
-              <h3 class="head-title">My Cart (02)</h3>
+              <h3 class="head-title">My Cart (<?=  $_SESSION['user']['cartItems'] ?>)</h3>
             </div>
             <!-- cart-table-section -->
             <div class="box-body">
               <div class="table-responsive">
                 <div class="cart">
                   <table class="table table-bordered ">
+                  <?php if ($cartItems == null){?>
+                      <tr><p>Giỏ hàng trống</p></tr>
+                    <?php }  else {?>
                     <thead>
                       <tr>
                         <th>
@@ -53,108 +53,58 @@ include_once(__DIR__ . '/header.php');
                         </th>
                         <th>
                         </th>
+                        <th>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
+                    
+                    <?php foreach ($cartItems as $item): ?>
                       <tr>
-                        <td><a href="#"><img src="../public/userslte/images/cart_product_1.png" alt=""></a>
-                          <span><a href="#">Google Pixle</a></span>
+                        <td><a href="#"><img style="width: 80px; height: 100px;" src="../public/userslte/images/<?= $item[5]?>" alt=""></a>
+                          <span><a href="#"></a><?= $item[2]?></span>
                         </td>
-                        <td>$1100</td>
+                        <td><?= $item[3]?>$</td>
+                        <form action="/addorder" method="post">
                         <td>
+                          <input type="hidden" name="productId" id="productId" value="<?= $item[1]?>">
+                          <input type="hidden" name="productName" id="productName" value="<?= $item[2]?>">
+                          <input type="hidden" name="price" id="price" value="<?= $item[3]?>">
+                          <input type="hidden" name="image" id="image" value="<?= $item[5]?>">
                           <div class="product-quantity">
                             <div class="quantity">
-                              <input type="number" class="input-text qty text" step="1" min="1" max="6" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*">
+                              <input type="number" class="input-text qty text" step="1" min="1"  name="quantity" value="<?= $item[4]?>" title="Qty" size="4" pattern="[0-9]*">
                             </div>
                           </div>
                         </td>
-                        <td>$1100.00</td>
-                        <th scope="row"><a href="#" class="btn-close"><i class="fa fa-times-circle-o"></i></a></th>
+                        <td><?= (int)$item[3] * (int)$item[4]?>$</td>
+                        <th scope="row"><a href="/removeitem?productId=<?= $item[1]?>" class="btn-close"><i class="fa fa-times-circle-o"></i></a></th>
+                        <th scope="row"><button class="btn btn-primary btn-block" type="submit">Buy Now</button></th>
+                        </form>
                       </tr>
-                      <tr>
-                        <td><a href="#"><img src="../public/userslte/images/cart_product_2.png" alt=""></a>
-                          <span><a href="#">Apple iPhone 6S </a></span>
-                        </td>
-                        <td>$1300</td>
-                        <td>
-                          <div class="product-quantity">
-                            <div class="quantity">
-                              <input type="number" class="input-text qty text " step="1" min="1" max="6" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*">
-                            </div>
-                          </div>
-                        </td>
-                        <td>$1300.00</td>
-                        <th scope="row"><a href="#" class="btn-close"><i class="fa fa-times-circle-o"></i></a></th>
-                      </tr>
+                      
+                      <?php endforeach; }?>
                     </tbody>
                   </table>
                 </div>
-                <!-- /.cart-table-section -->
+              </div>
+            </div>
+            </div >
+            <div>
+              <a href="/productList" class="btn-link"><i class="fa fa-angle-left" ></i> back to shopping</a>
+              <div class="page-breadcrumb">
+              <a href="/orderlist" class="btn-link" ><i class="fa fa-angle-right "></i> history purchase</a>
               </div>
             </div>
           </div>
-          <a href="#" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
-        </div>
-        <!-- cart-total -->
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="box mb30">
-            <div class="box-head">
-              <h3 class="head-title">Price Details</h3>
-            </div>
-            <div class="box-body">
-              <div class=" table-responsive">
-                <div class="pay-amount ">
-                  <table class="table mb20">
-                    <tbody>
-                      <tr>
-                        <th>
-                          <span>Price (2 items)</span>
-                        </th>
-                        <td>$2400</td>
-                      </tr>
-                      <tr>
-                        <th>
-                          <span>Delivery Charges</span>
-                        </th>
-                        <td><strong class="text-green">Free</strong></td>
-                      </tr>
-                    </tbody>
-                    <tbody>
-                      <tr>
-                        <th>
-                          <span class="mb0" style="font-weight: 700;">Amount Payable</span>
-                        </th>
-                        <td style="font-weight: 700; color: #1c1e1e; ">$2400</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <button class="btn btn-primary btn-block">Proceed To Checkout</button>
-              </div>
-            </div>
-          </div>
-          <!-- coupon-section -->
-          <div class="box mb30">
-            <div class="box-head">
-              <h3 class="head-title">Coupons &amp; Offers</h3>
-            </div>
-            <div class="box-body">
-              <form>
-                <div class="coupon-form">
-                  <input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="Coupon code">
-                  <input type="submit" class="btn btn-primary btn-block" name="apply_coupon" value="Apply coupon">
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- /.coupon-section -->
         </div>
       </div>
-      <!-- /.cart-total -->
     </div>
   </div>
-  <!-- /.cart-section -->
 </main>
+<?php include_once(__DIR__ . '/footer.php'); ?>
+<?php
+$content = ob_get_clean();
 ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>

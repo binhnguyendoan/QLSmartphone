@@ -2,6 +2,7 @@
 <html lang="en">
 
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2024 15:55:48 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +22,10 @@
     <link href="../public/userslte/css/owl.theme.default.css" rel="stylesheet">
     <!-- FontAwesome CSS -->
     <link href="../public/userslte/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/userslte/css/jquery.desoslide.css" />
+    <link rel="stylesheet" type="text/css" href="../public/userslte/css/animate.min.css">
+    <link href="../public/userslte/css/scrolling-nav.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../public/userslte/css/jquery.rateyo.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,7 +49,6 @@
     <script type="text/javascript" src="../public/userslte/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="../public/userslte/js/multiple-carousel.js"></script>
 </body>
-
 
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2024 15:56:08 GMT -->
 

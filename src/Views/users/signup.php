@@ -34,7 +34,7 @@ include_once(__DIR__ . '/header.php');
                   <h3 class="mb10">Create Your Account</h3>
                   <p>Please fill all Resgister form Fields Below. </p>
                 </div>
-                <form>
+                <form action="/checksignup" method="post">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="name">
@@ -46,25 +46,55 @@ include_once(__DIR__ . '/header.php');
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="phone"></label>
-                      <input id="phone" name="phone" type="text" class="form-control" placeholder=" Number" required>
+                      <input id="address" name="address" type="text" class="form-control" placeholder="Enter Your Address" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label sr-only" for="phone"></label>
+                      <input id="city" name="city" type="text" class="form-control" placeholder="Enter Your City" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label sr-only" for="phone"></label>
+                      <input id="country" name="country" type="text" class="form-control" placeholder="Enter Your Country" required>
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="email"></label>
-                      <input id="email" name="emaol" type="text" class="form-control" placeholder="Enter your email id" required>
+                      <input id="zipcode" name="zipcode" type="text" class="form-control" placeholder="Enter Your Zipcode" required>
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                      <label class="control-label  sr-only" for="password"></label>
-                      <input id="password" name="password" type="password" class="form-control" placeholder="create your password" required>
+                      <label class="control-label sr-only" for="password"></label>
+                      <input id="phone" name="phone" type="text" class="form-control" placeholder="Enter Your Phone Number" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label sr-only" for="password"></label>
+                      <input id="email" name="email" type="email" class="form-control" placeholder="Enter Your Email" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label sr-only" for="password"></label>
+                      <input id="password" name="password" type="password" class="form-control" placeholder="Enter Your Password" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label sr-only" for="password"></label>
+                      <input id="passwordconfirm" name="passwordconfirm" type="password" class="form-control" placeholder="Enter Your Password Confirm" required>
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                    <button class="btn btn-primary btn-block mb10">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block mb10">Register</button>
                     <div>
-                      <p>Have an Acount? <a href="#">Login</a></p>
+                      <p>Have an Acount? <a href="/signin">Login</a></p>
                     </div>
                   </div>
                 </form>
@@ -111,6 +141,4 @@ include_once(__DIR__ . '/header.php');
   </div>
   <!-- /.sign-up form -->
 </main>
-?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
-?>
+<?php include_once(__DIR__ . '/footer.php'); ?>

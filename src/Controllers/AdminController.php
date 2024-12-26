@@ -2,25 +2,22 @@
 
 namespace App\Controllers;
 
-
 use App\Models\Admin;
 use App\Controller;
 
-
 class AdminController extends Controller
 {
-    private $adminModel;
+    private $postModel;
 
     public function __construct()
     {
-        $this->adminModel = new Admin();
+        $this->postModel = new Admin();
     }
 
     public function index()
     {
         $this->render('admin\login_admin', []);
     }
-
 
     public function login()
     {
@@ -37,8 +34,8 @@ class AdminController extends Controller
             if ($admin) {
                 $_SESSION['admin'] = [
                     'id' => $admin['id'],
-                    'name' => $admin['Name'],
-                    'image' => $admin['Image']
+                    'name' => $admin['name'],
+                    'image' => $admin['image']
                 ];
                 print_r($_SESSION['admin']);
                 header("Location: /admin/dashboard");
@@ -72,141 +69,4 @@ class AdminController extends Controller
         header("Location: /admin/login");
         exit;
     }
-
-    public function getCategory()
-    {
-        $this->checkAuth();
-        $categories =  $this->adminModel->getCategories();
-        $this->render('admin\category', ['categories' => $categories]);
-      
-    }
-
-    public function addCategory(){
-        $this->checkAuth();
-        $this->render('admin\add_category', []);
-    }
-    public function updateCategory(){
-        $this->checkAuth();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'] ?? '';
-            var_dump($name);
-            if (!empty($name)) {
-                $success = $this->adminModel->addCategory($name);
-                if ($success) {
-                    $_SESSION['message'] = 'Category added successfully!';
-                    header("Location: /admin/category"); 
-                    exit;
-                } else {
-                    $_SESSION['error'] = 'Failed to add category. Please try again.';
-                }
-            } else {
-                $_SESSION['error'] = 'Category name cannot be empty.';
-            }
-        }
-    }
-
-    public function editCategory($catId){
-        $this->checkAuth();
-        $category = $this->adminModel->getCategoryById($catId);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $categoryName = $_POST['name'] ?? '';
-            if (!empty($categoryName)) {
-                $success = $this->adminModel->updateCategory($catId, $categoryName);
-                
-                if ($success) {
-                    $_SESSION['message'] = 'Category updated successfully!';
-                    header("Location: /admin/category");  
-                    exit;
-                } else {
-                    $_SESSION['error'] = 'Failed to update category. Please try again.';
-                }
-            } else {
-                $_SESSION['error'] = 'Category name cannot be empty.';
-            }
-        }
-        $this->render('admin\edit_category', ['category' => $category]);
-    }
-
-
-    public function deleteCategory($catId)
-{
-    $this->checkAuth();
-    $deleted = $this->adminModel->deleteCategory($catId);
-    if ($deleted) {
-        $_SESSION['message'] = 'Category deleted successfully!';
-    } else {
-        $_SESSION['error'] = 'Failed to delete category. Please try again.';
-    }
-    header("Location: /admin/category");
-    exit;
-}
-
-//brand
-public function getBrand()
-{
-    $this->checkAuth();
-    $brand =  $this->adminModel->getBrand();
-    $this->render('admin\brand', ['brand' => $brand]);
-  
-}
-public function addBrand(){
-    $this->checkAuth();
-    $this->render('admin\add_brand', []);
-}
-public function updateBrand(){
-    $this->checkAuth();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['Brandname'] ?? '';
-        var_dump($name);
-        if (!empty($name)) {
-            $success = $this->adminModel->addBrand($name);
-            if ($success) {
-                $_SESSION['message'] = 'Category added successfully!';
-                header("Location: /admin/brand"); 
-                exit;
-            } else {
-                $_SESSION['error'] = 'Failed to add category. Please try again.';
-            }
-        } else {
-            $_SESSION['error'] = 'Category name cannot be empty.';
-        }
-    }
-}
-public function editBrand($catId){
-    $this->checkAuth();
-    $brand = $this->adminModel->getBrandById($catId);
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $categoryName = $_POST['name'] ?? '';
-        if (!empty($categoryName)) {
-            $success = $this->adminModel->updateBrand($catId, $categoryName);
-            
-            if ($success) {
-                $_SESSION['message'] = 'Category updated successfully!';
-                header("Location: /admin/brand");  
-                exit;
-            } else {
-                $_SESSION['error'] = 'Failed to update category. Please try again.';
-            }
-        } else {
-            $_SESSION['error'] = 'Category name cannot be empty.';
-        }
-    }
-    $this->render('admin\edit_brand', ['brand' => $brand]);
-}
-
-public function deleteBrand($catId)
-{
-    $this->checkAuth();
-    $deleted = $this->adminModel->deleteBrand($catId);
-    if ($deleted) {
-        $_SESSION['message'] = 'Category deleted successfully!';
-    } else {
-        $_SESSION['error'] = 'Failed to delete category. Please try again.';
-    }
-    header("Location: /admin/brand");
-    exit;
-}
-
-
-
 }
