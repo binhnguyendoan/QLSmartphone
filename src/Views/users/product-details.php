@@ -73,15 +73,17 @@ include_once(__DIR__ . '/header.php');
                       <p><?= $productDetails['desc'] ?></p>
                       <div class="product-quantity">
                         <h5>Quantity</h5>
+                        <form action="/addtocart" method="post">
                         <div class="quantity mb20">
-                          <input type="number" class="input-text qty text" step="1" min="1"
-                            max="6" name="quantity" value="1" title="Qty" size="4"
-                            pattern="[0-9]*">
+                        <input id="productId" name="productId" type="hidden" value="<?= $productDetails['productId'] ?>">
+                          <input id="productName" name="productName" type="hidden" value="<?= $productDetails['productName'] ?>">
+                          <input id="price" name="price" type="hidden" value="<?= $productDetails['price'] ?>">
+                          <input id="image" name="image" type="hidden" value="<?= $productDetails['image'] ?>">
+                          <input type="number" class="input-text qty text" step="1" min="1" max="6" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*">
                         </div>
                       </div>
-                      <button type="button" class="btn btn-default"
-                        onclick="window.location.href='/cart'"><i
-                          class="fa fa-shopping-cart"></i>&nbsp;Add to cart</button>
+                      <button type="submit" class="btn btn-default" ><i class="fa fa-shopping-cart"></i>&nbsp;Add to cart</button>
+                      </form>
                     </div>
                   </div>
                 </div>

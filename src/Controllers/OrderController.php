@@ -41,6 +41,12 @@ class OrderController extends Controller
                 $order = new Order();
 
                 $order->addToOrder($productId, $productName, $userId, $quantity, $price, $image, 0);
+                (new Cart())->removeCartItem($productId, $userId);
+                if ((new Cart)->getAllCartItem($userId) == null) {
+                    $_SESSION['user']['cartItems'] = 0;
+                } else {
+                    $_SESSION['user']['cartItems'] =  count((new Cart)->getAllCartItem($userId));
+                }
                 header("Location: /orderlist");
                 exit;
             }

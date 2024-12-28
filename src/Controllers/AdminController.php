@@ -103,7 +103,7 @@ class AdminController extends Controller
                 $success = $this->adminModel->addCategory($name);
                 if ($success) {
                     $_SESSION['message'] = 'Category added successfully!';
-                    header("Location: /admin/category");
+                    header("Location: /admin/category/1");
                     exit;
                 } else {
                     $_SESSION['error'] = 'Failed to add category. Please try again.';
@@ -125,7 +125,7 @@ class AdminController extends Controller
 
                 if ($success) {
                     $_SESSION['message'] = 'Category updated successfully!';
-                    header("Location: /admin/category");
+                    header("Location: /admin/category/1");
                     exit;
                 } else {
                     $_SESSION['error'] = 'Failed to update category. Please try again.';
@@ -181,7 +181,7 @@ class AdminController extends Controller
                 $success = $this->adminModel->addBrand($name);
                 if ($success) {
                     $_SESSION['message'] = 'Category added successfully!';
-                    header("Location: /admin/brand");
+                    header("Location: /admin/brand/1");
                     exit;
                 } else {
                     $_SESSION['error'] = 'Failed to add category. Please try again.';
@@ -202,7 +202,7 @@ class AdminController extends Controller
 
                 if ($success) {
                     $_SESSION['message'] = 'Category updated successfully!';
-                    header("Location: /admin/brand");
+                    header("Location: /admin/brand/1");
                     exit;
                 } else {
                     $_SESSION['error'] = 'Failed to update category. Please try again.';
@@ -294,7 +294,7 @@ class AdminController extends Controller
 
             if ($success) {
                 $_SESSION['message'] = 'Product updated successfully!';
-                header("Location: /admin/product");
+                header("Location: /admin/products/1");
                 exit;
             } else {
                 $_SESSION['error'] = 'Failed to update product.';

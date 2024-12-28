@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\Models\Cart;
 use App\Models\ProductModels;
 use App\Models\User;
 
@@ -88,6 +89,7 @@ class UserController extends Controller
         session_start();
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
                 $id = $_POST['id'] ?? '';
                 $name = $_POST['name'] ?? '';
                 $address = $_POST['address'] ?? '';
@@ -97,6 +99,7 @@ class UserController extends Controller
                 $phone = $_POST['phone'] ?? '';
                 $email = $_POST['email'] ?? '';
                 $user = (new User())->updateUser($id, $name, $address, $city, $country, $zipcode, $phone, $email);
+                $sumCart = (new Cart())->getAllCartItem($id);
                 $_SESSION['user'] = [
                     'id' => $id,
                     'name' => $name,
@@ -105,7 +108,8 @@ class UserController extends Controller
                     'country' => $country,
                     'zipcode' => $zipcode,
                     'phone' => $phone,
-                    'email' => $email
+                    'email' => $email,
+                    'cartItems' => ($sumCart == null) ? 0 : count($sumCart),
                 ];
                 header("Location: /profile");
                 exit;
@@ -117,6 +121,7 @@ class UserController extends Controller
     }
     public function updatePassword()
     {
+        session_start();
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $id = $_POST['id'] ?? '';
