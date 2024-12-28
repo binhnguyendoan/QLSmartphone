@@ -389,4 +389,83 @@ class Admin
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+
+    //Order
+    public function getOrderWithPagination($limit, $offset)
+    {
+        $sql = "SELECT * FROM `order` LIMIT ? OFFSET ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $limit, $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function deleteOrderById($id)
+    {
+        $sql = "DELETE FROM `order` WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    public function getTotalOrders()
+    {
+        $sql = "SELECT COUNT(*) as total FROM `order`";
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['total'];
+        }
+
+        return 0;
+    }
+
+    public function updateOrderStatus($id)
+    {
+        $sql = "UPDATE `order` SET `status` = 1 WHERE `id` = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    public function getProductCountByCategory()
+    {
+        $sql = "
+        SELECT c.catId, c.catName, COUNT(p.productId) AS productCount
+        FROM category c
+        LEFT JOIN product p ON c.catId = p.catId
+        GROUP BY c.catId, c.catName";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getTotalProducts()
+    {
+        $sql = "SELECT COUNT(*) as total FROM product";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+    public function getProductCountByBrand()
+    {
+        $sql = "
+        SELECT b.brandId, b.brandName, COUNT(p.productId) AS productCount
+        FROM brand b
+        LEFT JOIN product p ON b.brandId = p.brandId
+        GROUP BY b.brandId, b.brandName";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

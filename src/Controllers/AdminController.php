@@ -436,4 +436,102 @@ class AdminController extends Controller
         header("Location: /admin/blog/1");
         exit;
     }
+
+    //Order
+
+    public function getOrder($page = 1)
+    {
+        $this->checkAuth();
+        $limit = 4;
+        $page = $_GET['page'] ?? 1;
+        $offset = ($page - 1) * $limit;
+
+        $orders = $this->adminModel->getOrderWithPagination($limit, $offset);
+        $totalOrders = $this->adminModel->getTotalOrders();
+        $totalPages = ceil($totalOrders / $limit);
+
+        $this->render('admin/order', [
+            'orders' => $orders,
+            'currentPage' => $page,
+            'totalPages' => $totalPages,
+        ]);
+    }
+    public function deleteUserById($id)
+    {
+        $this->checkAuth();
+        $success = $this->adminModel->deleteUserById($id);
+        if ($success) {
+            $_SESSION['message'] = 'User deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete user.';
+        }
+        header("Location: /admin/user/1");
+        exit;
+    }
+
+    public function deleteOrderById($id)
+    {
+        $this->checkAuth();
+        $success = $this->adminModel->deleteOrderById($id);
+        if ($success) {
+            $_SESSION['message'] = 'Order deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete order.';
+        }
+        header("Location: /admin/order/1");
+        exit;
+    }
+
+    public function updateStatus($id)
+    {
+        $this->checkAuth();
+        $updated = $this->adminModel->updateOrderStatus($id);
+
+        if ($updated) {
+            $_SESSION['message'] = 'Order status updated successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to update order status.';
+        }
+        header('Location: /admin/order/1');
+        exit;
+    }
+
+    public function showProductStatistics()
+{
+    $this->checkAuth();
+
+    $limit = 4;
+    $page = $_GET['page'] ?? 1; 
+    $offset = ($page - 1) * $limit;
+
+    $statistics = $this->adminModel->getProductCountByCategory($limit, $offset);
+    
+    $totalProducts = $this->adminModel->getTotalProducts();
+    $totalPages = ceil($totalProducts / $limit);
+    $this->render('/admin/statistical', [
+        'statistics' => $statistics,
+        'currentPage' => $page,
+        'totalPages' => $totalPages,
+    ]);
+}
+
+
+public function showProductByBrand()
+{
+    $this->checkAuth();
+
+    $limit = 4;
+    $page = $_GET['page'] ?? 1; 
+    $offset = ($page - 1) * $limit;
+
+    $staproduct = $this->adminModel->getProductCountByBrand($limit, $offset);
+    
+    $totalProducts = $this->adminModel->getTotalProducts();
+    $totalPages = ceil($totalProducts / $limit);
+    $this->render('/admin/statis_pro_brand', [
+        'staproduct' => $staproduct,
+        'currentPage' => $page,
+        'totalPages' => $totalPages,
+    ]);
+}
 }

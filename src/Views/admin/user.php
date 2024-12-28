@@ -75,11 +75,10 @@ $admin = $_SESSION['admin'] ?? null;
                     </ul>
                 </nav>
             </div>
-
-
         </div>
-        <!-- <?php include './src/Views/admin/footer_admin.php' ?> -->
     </div>
+    <?php include './src/Views/admin/footer_admin.php' ?>
+</div>
 
-    <?php $content = ob_get_clean(); ?>
-    <?php include(__DIR__ . '/../../../templates/layout.php'); ?>
+<?php $content = ob_get_clean(); ?>
+<?php include(__DIR__ . '/../../../templates/layout.php'); ?>

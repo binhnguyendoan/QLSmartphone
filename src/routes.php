@@ -44,8 +44,16 @@ $router->addRoute('/\/admin\/delete-product\/(\d+)/', [new AdminController(), 'd
 //admin user 
 
 $router->addRoute('/\/admin\/user/', [new AdminController(), 'getUser']);
-$router->addRoute('/\/admin\/delete-user\/(\d+)/', [new AdminController(), 'deleteUser']);
+$router->addRoute('/\/admin\/delete-user\/(\d+)/', [new AdminController(), 'deleteUserById']);
 
+//admin Order
+$router->addRoute('/\/admin\/order\/(\d+)/', [new AdminController(), 'getOrder']);
+$router->addRoute('/\/admin\/update-status\/(\d+)/', [new AdminController(), 'updateStatus']);
+$router->addRoute('/\/admin\/delete-order\/(\d+)/', [new AdminController(), 'deleteOrderById']);
+
+//admin statisical
+$router->addRoute('/\/admin\/statistical/', [new AdminController(), 'showProductStatistics']);
+$router->addRoute('/\/admin\/statis_pro_brand/', [new AdminController(), 'showProductByBrand']);
 
 //admin blog 
 $router->addRoute('/\/admin\/blog\/(\d+)/', [new AdminController(), 'getBlog']);
