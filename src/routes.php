@@ -47,6 +47,12 @@ $router->addRoute('/\/admin\/user/', [new AdminController(), 'getUser']);
 $router->addRoute('/\/admin\/delete-user\/(\d+)/', [new AdminController(), 'deleteUser']);
 
 
+//admin blog 
+$router->addRoute('/\/admin\/blog\/(\d+)/', [new AdminController(), 'getBlog']);
+$router->addRoute('/\/admin\/create-blog/', [new AdminController(), 'addBlog']);
+$router->addRoute('/\/admin\/update-blog/', [new AdminController(), 'updateBlog']);
+$router->addRoute('/\/admin\/edit-blog\/(\d+)/', [new AdminController(), 'editBlog']);
+$router->addRoute('/\/admin\/delete-blog\/(\d+)/', [new AdminController(), 'deleteBlog']);
 
 //user
 $router->addRoute('/\//', [new UserController(), 'index']);
@@ -57,7 +63,9 @@ $router->addRoute('/\/checkout/', [new CheckoutController(), 'checkout']);
 $router->addRoute('/\/search/', [new ProductController(), 'productList']);
 $router->addRoute('/\/productDetails\/(\d+)/', [new ProductController(), 'productDetails']);
 
-
+//user Blog 
+$router->addRoute('/\/blog\/(\d+)/', [new UserController(), 'getBlog']);
+$router->addRoute('/\/write-blog\/(\d+)/', [new UserController(), 'writeBlog']);
 // route của lễ
 $router->addRoute('/\/signin/', [new UserController(), 'signin']);
 $router->addRoute('/\/auth\/validate/', [new AuthenticationController(), 'authenticate']);

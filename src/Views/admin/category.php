@@ -16,7 +16,7 @@ $admin = $_SESSION['admin'] ?? null;
                     <tr class="mt-3">
                         <th>ID</th>
                         <th>Tên Danh mục</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                     <?php if (!empty($categories)): ?>
                     <?php foreach ($categories as $category): ?>

@@ -89,4 +89,44 @@ class ProductModels
         $result = $this->connection->query("SELECT p.productId,p.productName,p.price_sale, p.price,p.offer_price,p.image FROM product p JOIN `order` o ON p.productId = o.productId GROUP BY p.productId, p.productName DESC LIMIT 4");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+
+    //blog 
+    public function getBlog($page = 1, $limit = 10)
+    {
+        $offset = ($page - 1) * $limit;
+        $sql = "
+         SELECT * 
+         FROM blog
+         LIMIT ?, ?
+     ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $offset, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getBlogCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM blog";
+        $result = $this->connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'];
+    }
+
+    public function getBlogid($id)
+    {
+        $sql = "SELECT * FROM blog WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }

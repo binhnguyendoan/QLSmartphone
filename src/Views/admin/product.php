@@ -23,7 +23,7 @@ $admin = $_SESSION['admin'] ?? null;
                         <th>Type</th>
                         <th>Price Sale</th>
                         <th>Offer Price</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                     <?php if (!empty($products)): ?>
                     <?php foreach ($products as $product): ?>
@@ -34,10 +34,10 @@ $admin = $_SESSION['admin'] ?? null;
                         <td><?= $product['catName']; ?></td>
                         <td><?= $product['brandName']; ?></td>
                         <td><?= $product['desc']; ?></td>
-                        <td><?= number_format($product['price'], 0, ',', '.') . ' (VND)'; ?></td>
-                        <td><?= number_format($product['type'], 0, ',', '.') . ' (VND)'; ?></td>
-                        <td><?= number_format($product['price_sale'], 0, ',', '.') . ' (VND)'; ?></td>
-                        <td><?= number_format($product['offer_price'], 0, ',', '.') . ' (VND)'; ?></td>
+                        <td><?= $product['price']; ?>$</td>
+                        <td><?= $product['type'] ?>$</td>
+                        <td><?= $product['price_sale'] ?>$</td>
+                        <td><?= $product['offer_price']; ?>$</td>
                         <td>
                             <a href="/admin/edit-product/<?php echo $product['productId']; ?>"><i
                                     class="fa-regular fa-pen-to-square"></i></a> |

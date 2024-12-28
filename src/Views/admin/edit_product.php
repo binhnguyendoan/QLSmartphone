@@ -37,16 +37,16 @@ $admin = $_SESSION['admin'] ?? null;
                 <label class="form-label" for="desc">Description</label>
                 <textarea class="form-control" id="desc" name="desc" rows="4"><?= $product['desc']; ?></textarea>
 
-                <label class="form-label" for="price">Price (VND)</label>
+                <label class="form-label" for="price">Price </label>
                 <input class="form-control" type="number" id="price" name="price" step="0.01"
                     value="<?= $product['price']; ?>" required>
-                <label class="form-label" for="price">Type (VND)</label>
+                <label class="form-label" for="price">Type</label>
                 <input class="form-control" type="number" id="price" name="type" step="0.01"
                     value="<?= $product['type']; ?>" required>
-                <label class="form-label" for="price">Price Sale (VND)</label>
+                <label class="form-label" for="price">Price Sale </label>
                 <input class="form-control" type="number" id="price" name="price_sale"
                     value="<?= $product['price_sale']; ?>" step="0.01" required>
-                <label class="form-label" for="price">Offer Price(VND)</label>
+                <label class="form-label" for="price">Offer Price</label>
                 <input class="form-control" type="number" id="price" name="offer_price"
                     value="<?= $product['offer_price']; ?>" step="0.01" required>
                 <label class="form-label" for="image">Product Image</label>

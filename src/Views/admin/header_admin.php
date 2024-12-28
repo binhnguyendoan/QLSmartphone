@@ -351,6 +351,22 @@
                 </ul>
             </li>
 
+            <li class="active treeview menu-open">
+                <a href="#">
+                    <i class="fa-solid fa-cart-shopping"></i> <span>Quản lý blog</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/blog/<?= $currentPage ?? 1; ?>"
+                            class="<?= (isset($currentPage) && $currentPage == 1) ? 'active' : ''; ?>"><i
+                                class="fa fa-circle-o"></i>Blog</a></li>
+
+
+                </ul>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

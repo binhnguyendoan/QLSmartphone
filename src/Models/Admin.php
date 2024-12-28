@@ -324,4 +324,69 @@ class Admin
 
         return 0;
     }
+
+    //blog
+
+    public function getBlog($page = 1, $limit = 10)
+    {
+        $offset = ($page - 1) * $limit;
+        $sql = "
+        SELECT * 
+        FROM blog
+        LIMIT ?, ?
+    ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $offset, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getBlogCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM blog";
+        $result = $this->connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'];
+    }
+
+    public function addBlog($title, $image, $desc)
+    {
+        $sql = "INSERT INTO blog (title,  image, `desc` ) 
+                VALUES (?, ?, ?)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("sss", $title, $image, $desc);
+        return $stmt->execute();
+    }
+
+    public function getBlogid($id)
+    {
+        $sql = "SELECT * FROM blog WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+    public function updateBlog($id, $title,  $image, $desc)
+    {
+        $sql = "UPDATE blog 
+            SET title = ?,`desc` = ?, image = ? 
+            WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("sssi", $title, $desc, $image, $id);
+        return $stmt->execute();
+    }
+    public function deleteBlog($id)
+    {
+        $sql = "DELETE FROM blog WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
 }

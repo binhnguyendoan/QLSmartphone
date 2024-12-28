@@ -1,6 +1,7 @@
-<?php ob_start(); if (session_status() == PHP_SESSION_NONE) {
+<?php ob_start();
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}?>
+} ?>
 <header>
     <!-- top-header-->
     <div class="top-header">
@@ -47,24 +48,24 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="account-section">
                         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])): ?>
-                            <ul>
-                                <!-- Hiển thị tên người dùng và nút đăng xuất -->
-                                <li><a href="/profile" class="title hidden-xs">Hi,
-                                        <?= htmlspecialchars($_SESSION['user']['name']) ?></a></li>
-                                <li class="hidden-xs">|</li>
-                                <li><a href="/logout" class="title hidden-xs">Logout</a></li>
-                                <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup
-                                            class="cart-quantity"><?= ($_SESSION['user']['cartItems']) ?></sup></a></li>
-                            </ul>
+                        <ul>
+                            <!-- Hiển thị tên người dùng và nút đăng xuất -->
+                            <li><a href="/profile" class="title hidden-xs">Hi,
+                                    <?= htmlspecialchars($_SESSION['user']['name']) ?></a></li>
+                            <li class="hidden-xs">|</li>
+                            <li><a href="/logout" class="title hidden-xs">Logout</a></li>
+                            <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup
+                                        class="cart-quantity"><?= ($_SESSION['user']['cartItems']) ?></sup></a></li>
+                        </ul>
                         <?php else: ?>
-                            <!-- Nếu chưa đăng nhập, hiển thị liên kết đến đăng nhập và đăng ký -->
-                            <ul>
-                                <li><a href="/signin" class="title hidden-xs">My Account</a></li>
-                                <li class="hidden-xs">|</li>
-                                <li><a href="/signup" class="title hidden-xs">Register</a></li>
-                                <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup
-                                            class="cart-quantity">0</sup></a></li>
-                            </ul>
+                        <!-- Nếu chưa đăng nhập, hiển thị liên kết đến đăng nhập và đăng ký -->
+                        <ul>
+                            <li><a href="/signin" class="title hidden-xs">My Account</a></li>
+                            <li class="hidden-xs">|</li>
+                            <li><a href="/signup" class="title hidden-xs">Register</a></li>
+                            <li><a href="/cart" class="title"><i class="fa fa-shopping-cart"></i> <sup
+                                        class="cart-quantity">0</sup></a></li>
+                        </ul>
                         <?php endif; ?>
                     </div>
                     <!-- /.account -->
@@ -100,9 +101,9 @@
                                         <li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> -->
-                                <li><a href="contact-us.html">Contact Us</a>
+
                                 </li>
-                                <li><a href="contact-us.html">Blog</a>
+                                <li><a href="/blog/<?= $currentPage ?? 1; ?>">Blog</a>
                                 </li>
                             </ul>
                         </div>

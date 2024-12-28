@@ -147,7 +147,7 @@ class AdminController extends Controller
         } else {
             $_SESSION['error'] = 'Failed to delete category. Please try again.';
         }
-        header("Location: /admin/category");
+        header("Location: /admin/category/1");
         exit;
     }
 
@@ -223,7 +223,7 @@ class AdminController extends Controller
         } else {
             $_SESSION['error'] = 'Failed to delete category. Please try again.';
         }
-        header("Location: /admin/brand");
+        header("Location: /admin/brand/1");
         exit;
     }
 
@@ -260,7 +260,7 @@ class AdminController extends Controller
 
             if ($success) {
                 $_SESSION['message'] = 'Product updated successfully!';
-                header("Location: /admin/product");
+                header("Location: /admin/products/1");
                 exit;
             } else {
                 $_SESSION['error'] = 'Failed to update product.';
@@ -308,7 +308,7 @@ class AdminController extends Controller
         $product = $this->adminModel->getProductById($id);
         if (!$product) {
             $_SESSION['error'] = 'Product not found.';
-            header("Location: /admin/product");
+            header("Location: /admin/products/1");
             exit;
         }
         $categories = $this->adminModel->getCategorie();
@@ -330,7 +330,7 @@ class AdminController extends Controller
         } else {
             $_SESSION['error'] = 'Failed to delete product.';
         }
-        header("Location: /admin/product");
+        header("Location: /admin/products/1");
         exit;
     }
 
@@ -351,5 +351,89 @@ class AdminController extends Controller
             'currentPage' => $page,
             'totalPages' => $totalPages,
         ]);
+    }
+
+    //blog 
+    public function getBlog($page = 1)
+    {
+        $this->checkAuth();
+        $limit = 5;
+        $blog = $this->adminModel->getBlog($page, $limit);
+        $totalBlogs = $this->adminModel->getBlogCount();
+        $totalPages = ceil($totalBlogs / $limit);
+
+        $this->render('admin\blog', [
+            'blog' => $blog,
+            'totalPages' => $totalPages,
+            'currentPage' => $page
+        ]);
+    }
+    public function addBlog()
+    {
+        $this->checkAuth();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'] ?? '';
+            $desc = $_POST['desc'] ?? '';
+            $image = basename($_FILES['image']['name']);
+            $image_tmp = $_FILES['image']['tmp_name'];
+            $success = $this->adminModel->addBlog($title, $image, $desc);
+            move_uploaded_file($image_tmp, 'public/img/' . $image);
+            if ($success) {
+                $_SESSION['message'] = 'Product updated successfully!';
+                header("Location: /admin/blog/1");
+                exit;
+            } else {
+                $_SESSION['error'] = 'Failed to update product.';
+            }
+        }
+        $this->render('admin\add_blog', []);
+    }
+
+    public function editBlog($id)
+    {
+        $this->checkAuth();
+        $blog = $this->adminModel->getBlogid($id);
+        if (!$blog) {
+            $_SESSION['error'] = 'Product not found.';
+            header("Location: /admin/blog/1");
+            exit;
+        }
+        $this->render('admin\edit_blog', [
+            'blog' => $blog
+        ]);
+    }
+
+    public function updateBlog()
+    {
+        $this->checkAuth();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? '';
+            $title = $_POST['title'] ?? '';
+            $desc = $_POST['desc'] ?? '';
+            $image = basename($_FILES['image']['name']);
+            $image_tmp = $_FILES['image']['tmp_name'];
+            $success = $this->adminModel->updateBlog($id, $title, $image, $desc);
+            move_uploaded_file($image_tmp, 'public/img/' . $image);
+            if ($success) {
+                $_SESSION['message'] = 'Blog updated successfully!';
+                header("Location: /admin/blog/1");
+                exit;
+            } else {
+                $_SESSION['error'] = 'Failed to update product.';
+            }
+        }
+        $this->render('admin\add_blog', []);
+    }
+    public function deleteBlog($id)
+    {
+        $this->checkAuth();
+        $success = $this->adminModel->deleteBlog($id);
+        if ($success) {
+            $_SESSION['message'] = 'Blog deleted successfully!';
+        } else {
+            $_SESSION['error'] = 'Failed to delete product.';
+        }
+        header("Location: /admin/blog/1");
+        exit;
     }
 }

@@ -15,28 +15,28 @@ $admin = $_SESSION['admin'] ?? null;
                 <select class="form-control" id="category" name="catId" required>
                     <option value="">-- Select Category --</option>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?= $category['catId']; ?>"><?= htmlspecialchars($category['catName']); ?>
-                        </option>
+                    <option value="<?= $category['catId']; ?>"><?= htmlspecialchars($category['catName']); ?>
+                    </option>
                     <?php endforeach; ?>
                 </select>
                 <label class="form-label" for="brand">Brand</label>
                 <select class="form-control" id="brand" name="brandId" required>
                     <option value="">-- Select Brand --</option>
                     <?php foreach ($brands as $brand): ?>
-                        <option value="<?= $brand['brandId']; ?>"><?= htmlspecialchars($brand['brandName']); ?></option>
+                    <option value="<?= $brand['brandId']; ?>"><?= htmlspecialchars($brand['brandName']); ?></option>
                     <?php endforeach; ?>
                 </select>
 
                 <label class="form-label" for="desc">Description</label>
                 <textarea class="form-control" id="desc" name="desc" rows="4"></textarea>
 
-                <label class="form-label" for="price">Price (VND)</label>
+                <label class="form-label" for="price">Price </label>
                 <input class="form-control" type="number" id="price" name="price" step="0.01" required>
-                <label class="form-label" for="price">Type (VND)</label>
+                <label class="form-label" for="price">Type </label>
                 <input class="form-control" type="number" id="price" name="type" step="0.01" required>
-                <label class="form-label" for="price">Price Sale (VND)</label>
+                <label class="form-label" for="price">Price Sale</label>
                 <input class="form-control" type="number" id="price" name="price_sale" step="0.01" required>
-                <label class="form-label" for="price">Offer Price(VND)</label>
+                <label class="form-label" for="price">Offer Price</label>
                 <input class="form-control" type="number" id="price" name="offer_price" step="0.01" required>
                 <label class="form-label" for="image">Product Image</label>
                 <input class="form-control" type="file" id="image" name="image" accept="image/*" required>

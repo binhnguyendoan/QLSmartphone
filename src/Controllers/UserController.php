@@ -89,7 +89,7 @@ class UserController extends Controller
         session_start();
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                
+
                 $id = $_POST['id'] ?? '';
                 $name = $_POST['name'] ?? '';
                 $address = $_POST['address'] ?? '';
@@ -158,4 +158,32 @@ class UserController extends Controller
             exit;
         }
     }
+
+    //blog
+    public function getBlog($page = 1)
+    {
+        $limit = 6;
+        $blog = $this->productModel->getBlog($page, $limit);
+        $totalBlogs = $this->productModel->getBlogCount();
+        $totalPages = ceil($totalBlogs / $limit);
+
+        $this->render('users\blog', [
+            'blogs' => $blog,
+            'totalPages' => $totalPages,
+            'currentPage' => $page
+        ]);
+    }
+    public function writeBlog($id)
+    {
+        $blog = $this->productModel->getBlogid($id);
+        if (!$blog) {
+            $_SESSION['error'] = 'Product not found.';
+            header("Location: /blog/1");
+            exit;
+        }
+        $this->render('users\blog_defaul', [
+            'blog' => $blog
+        ]);
+    }
+
 }
