@@ -61,10 +61,13 @@
                         <div class="ft-social">
                             <span><a href="#" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a></span>
                             <span><a href="#" class="btn-social btn-twitter"><i class="fa fa-twitter"></i></a></span>
-                            <span><a href="#" class="btn-social btn-googleplus"><i class="fa fa-google-plus"></i></a></span>
+                            <span><a href="#" class="btn-social btn-googleplus"><i
+                                        class="fa fa-google-plus"></i></a></span>
                             <span><a href="#" class=" btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a></span>
-                            <span><a href="#" class=" btn-social btn-pinterest"><i class="fa fa-pinterest-p"></i></a></span>
-                            <span><a href="#" class=" btn-social btn-instagram"><i class="fa fa-instagram"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-pinterest"><i
+                                        class="fa fa-pinterest-p"></i></a></span>
+                            <span><a href="#" class=" btn-social btn-instagram"><i
+                                        class="fa fa-instagram"></i></a></span>
                         </div>
                     </div>
                 </div>

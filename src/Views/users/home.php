@@ -1,5 +1,5 @@
 <?php ob_start();
-include_once(__DIR__ . '/header.php');
+include(__DIR__ . '/header.php');
 ?>
 
 <!-- slider -->
@@ -18,9 +18,10 @@ include_once(__DIR__ . '/header.php');
                                     <img src="../public/userslte/images/mi_logo.png" alt="">
                                 </div>
                                 <h1 class="slider-title">Red Mi <span>Y1</span></h1>
-                                <p class="hidden-xs">LED Selfie-light | Fingerprint sensor | Dedicated microSD card slot Snapdragon 435 octa-core processor </p>
+                                <p class="hidden-xs">LED Selfie-light | Fingerprint sensor | Dedicated microSD card slot
+                                    Snapdragon 435 octa-core processor </p>
                                 <p class="slider-price">$138.99 </p>
-                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
+                                <a href="/productList" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -36,9 +37,10 @@ include_once(__DIR__ . '/header.php');
                                     <img src="../public/userslte/images/google_logo.png" alt="">
                                 </div>
                                 <h1 class="slider-title">Google Pixel 2</h1>
-                                <p class="hidden-xs">The latest Qualcomm Snapdragon 835 processor | Water-resistant metal unibody | Up to 7 hours of battery.</p>
+                                <p class="hidden-xs">The latest Qualcomm Snapdragon 835 processor | Water-resistant
+                                    metal unibody | Up to 7 hours of battery.</p>
                                 <p class="slider-price">$ 938.10</p>
-                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Download Free Template</a>
+                                <a href="/productList" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +60,7 @@ include_once(__DIR__ . '/header.php');
                                     <br> | 64 GB &amp; 256 GB ROM Memory
                                 </p>
                                 <p class="slider-price">$759.64</p>
-                                <a href="#" class="btn btn-primary btn-lg hidden-xs">Download Now</a>
+                                <a href="/productList" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +90,8 @@ include_once(__DIR__ . '/header.php');
                             </a>
                         </div>
                         <div class="showcase-img">
-                            <a href="#"> <img src="../public/userslte/images/display_img_2.png" alt="" style="padding-left: 80px;"></a>
+                            <a href="#"> <img src="../public/userslte/images/display_img_2.png" alt=""
+                                    style="padding-left: 80px;"></a>
                         </div>
                     </div>
                 </div>
@@ -156,82 +159,39 @@ include_once(__DIR__ . '/header.php');
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="box">
                     <div class="box-head">
-                        <h3 class="head-title">Latest Product</h3>
+                        <h3 class="head-title">Big Sale</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
                             <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_1.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Google Pixel <strong>(128GB, Black)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1100</a>
-                                            <a href="#" class="discounted-price">$1400</a>
-                                            <span class="offer-price">20%off</span>
+                            <?php foreach ($products as $product) { ?>
+                            <a href="/productDetails/<?= $product['productId'] ?>">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
+                                    <div class="product-block">
+                                        <div class="product-img">
+                                            <img src="/public/img/<?= $product['image'] ?>" alt="">
                                         </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_2.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                            <a href="#" class="discounted-price">$1700</a>
-                                            <span class="offer-price">10%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                        <div class="product-content">
+                                            <h5><a href="/productDetails/<?= $product['productId'] ?>"
+                                                    class="product-title"><?= $product['productName'] ?></a></h5>
+                                            <div class="product-meta">
+                                                <a href="/productDetails/<?= $product['productId'] ?>"
+                                                    class="product-price">$<?= $product['price'] ?></a>
+                                                <a href="/productDetails/<?= $product['productId'] ?>"
+                                                    class="discounted-price">$<?= $product['price_sale'] ?></a>
+                                                <span class="offer-price"><?= $product['offer_price'] ?>%off</span>
+                                            </div>
+                                            <div class="shopping-btn">
+                                                <a href="/productDetails/<?= $product['productId'] ?>"
+                                                    class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                                <a href="/productDetails/<?= $product['productId'] ?>"
+                                                    class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_3.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                            <a href="#" class="discounted-price">$2000</a>
-                                            <span class="offer-price">40%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_4.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte Black)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                            <a href="#" class="discounted-price">$2000</a>
-                                            <span class="offer-price">15%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like">
-                                                <i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </a>
+                            <?php } ?>
                             <!-- /.product -->
                         </div>
                     </div>
@@ -256,85 +216,40 @@ include_once(__DIR__ . '/header.php');
                 <div class="row">
                     <div class="owl-carousel owl-two owl-theme">
                         <!-- product -->
+                        <?php foreach ($bestsells as $bestsell) { ?>
                         <div class="item">
+                            <a href="/productDetails/<?= $bestsell['productId'] ?>"></a>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_5.png" alt=""></div>
+                                    <a href="/productDetails/<?= $bestsell['productId'] ?>">
+                                        <div class="product-img"><img src="/public/img/<?= $bestsell['image'] ?>"
+                                                alt="">
+                                        </div>
+                                    </a>
                                     <div class="product-content">
-                                        <h5><a href="#" class="product-title">Apple iPhone 6 <strong>(32 GB, Gold)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1700</a>
-                                            <a href="#" class="discounted-price">$2000</a>
-                                            <span class="offer-price">20%off</span>
+                                        <h5><a href="/productDetails/<?= $bestsell['productId'] ?>"
+                                                class="product-title"><?= $bestsell['productName'] ?></a></h5>
+                                        <div class="product-meta">
+                                            <a href="/productDetails/<?= $bestsell['productId'] ?>"
+                                                class="product-price">$<?= $bestsell['price'] ?></a>
+                                            <a href="/productDetails/<?= $bestsell['productId'] ?>"
+                                                class="discounted-price">$<?= $bestsell['price_sale'] ?></a>
+                                            <span class="offer-price"><?= $bestsell['offer_price'] ?>%off</span>
                                         </div>
                                         <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                            <a href="/productDetails/<?= $bestsell['productId'] ?>"
+                                                class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                            <a href="/productDetails/<?= $bestsell['productId'] ?>"
+                                                class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                             <!-- /.product -->
                         </div>
+                        <?php } ?>
                         <!-- product -->
-                        <div class="item">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_6.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Apple iPhone 7 <strong>(256 GB, Black)</strong> </a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1400</a>
-                                            <a href="#" class="discounted-price"><strike>$1800</strike></a>
-                                            <span class="offer-price">20%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="item">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_7.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Apple iPhone 6S <strong>(32GB, Gold)</strong> </a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1300</a>
-                                            <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                            <span class="offer-price">20%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="item">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_8.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Apple iPhone X <strong>(64 GB, Grey)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                            <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                            <span class="offer-price">20%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -352,77 +267,35 @@ include_once(__DIR__ . '/header.php');
                     <div class="box-body">
                         <div class="row">
                             <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_3.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                            <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                            <span class="offer-price">40%off</span>
+                            <?php foreach ($relatedProducts as $relatedProduct) { ?>
+                            <a href="/productDetails/<?= $relatedProduct['productId'] ?>">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
+                                    <div class="product-block">
+                                        <div class="product-img"><img src="/public/img/<?= $relatedProduct['image'] ?>"
+                                                alt="">
                                         </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_4.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte Black)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                            <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                            <span class="offer-price">15%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like">
-                                                <i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                        <div class="product-content">
+                                            <h5><a href="/productDetails/<?= $relatedProduct['productId'] ?>"
+                                                    class="product-title"><?= $relatedProduct['productName'] ?></a></h5>
+                                            <div class="product-meta">
+                                                <a href="/productDetails/<?= $relatedProduct['productId'] ?>"
+                                                    class="product-price">$<?= $relatedProduct['price'] ?></a>
+                                                <a href="/productDetails/<?= $relatedProduct['productId'] ?>"
+                                                    class="discounted-price">$<?= $relatedProduct['price_sale'] ?></a>
+                                                <span
+                                                    class="offer-price"><?= $relatedProduct['offer_price'] ?>%off</span>
+                                            </div>
+                                            <div class="shopping-btn">
+                                                <a href="/productDetails/<?= $relatedProduct['productId'] ?>"
+                                                    class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                                <a href="/productDetails/<?= $relatedProduct['productId'] ?>"
+                                                    class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_1.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">Google Pixel <strong>(128GB, Black)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1100</a>
-                                            <a href="#" class="discounted-price"><strike>$1400</strike></a>
-                                            <span class="offer-price">20%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.product -->
-                            <!-- product -->
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="product-block">
-                                    <div class="product-img"><img src="../public/userslte/images/product_img_2.png" alt=""></div>
-                                    <div class="product-content">
-                                        <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a></h5>
-                                        <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                            <a href="#" class="discounted-price"><strike>$1700</strike></a>
-                                            <span class="offer-price">10%off</span>
-                                        </div>
-                                        <div class="shopping-btn">
-                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                            <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </a>
+                            <?php } ?>
                             <!-- /.product -->
                         </div>
                     </div>
@@ -437,7 +310,8 @@ include_once(__DIR__ . '/header.php');
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="newsletter-wrapper">
                     <div class="row">
-                        <div class="col-lg-offset-5 col-lg-6 col-md-offset-5 col-md-6 col-sm-offset-5 col-sm-6 col-xs-12">
+                        <div
+                            class="col-lg-offset-5 col-lg-6 col-md-offset-5 col-md-6 col-sm-offset-5 col-sm-6 col-xs-12">
                             <div class="newsletter-form">
                                 <h1>Subscribe To <strong>Get Discount &amp; Offers</strong></h1>
                                 <div class="input-group">

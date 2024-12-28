@@ -29,49 +29,103 @@ class User
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserById($UserId)
+    public function getCustomerById($id)
     {
-        $UserId = $this->connection->real_escape_string($UserId);
-        $result = $this->connection->query("SELECT * FROM users WHERE id = $UserId");
+        $sql = "SELECT * FROM customer WHERE id = ? LIMIT 1";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        return $result->fetch_assoc();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
     }
 
-    public function createUser($username, $firstname, $lastname, $password_input, $password_check, $email)
+    public function getCustomerByEmail($email, $password)
     {
-        $username = $this->connection->real_escape_string($username);
-        $firstname = $this->connection->real_escape_string($firstname);
-        $lastname = $this->connection->real_escape_string($lastname);
-        $password_input = $this->connection->real_escape_string($password_input);
-        $password_check = $this->connection->real_escape_string($password_check);
-        $email = $this->connection->real_escape_string($email);
 
-        $this->connection->query("INSERT INTO users (username, firstname, lastname, password_input, password_check, email) VALUES ('$username', '$firstname','$lastname', '$password_input', '$password_check', '$email')");
+        $sql = "SELECT * FROM customer WHERE email = ? and password = ?  LIMIT 1";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Redirect to the index page after creating post
-        header('Location: ../../index.php');
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
     }
-
-    public function updateUser($id, $username, $firstname, $lastname, $password_input, $password_check, $email)
+    public function getPasswordByEmail($email)
     {
-        $Userid = $this->connection->real_escape_string($id);
-        $username = $this->connection->real_escape_string($username);
-        $firstname = $this->connection->real_escape_string($firstname);
-        $lastname = $this->connection->real_escape_string($lastname);
-        $password_input = $this->connection->real_escape_string($password_input);
-        $password_check = $this->connection->real_escape_string($password_check);
-        $email = $this->connection->real_escape_string($email);
-
-
-        $this->connection->query("UPDATE users SET username='$username', firstname='$firstname' ,lastname='$lastname', password_input='$password_input' , password_check = '$password_check' , email = '$email'  WHERE id=$Userid");
+        $sql = "SELECT password FROM `customer` WHERE email = ? ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_all();
+        } else {
+            return null;
+        }
+    }
+    public function signup($name, $address, $city, $country, $zipcode, $phone, $email, $password)
+    {
+        $sql = "INSERT INTO `customer`( `name`, `address`, `city`, `country`, `zipcode`, `phone`, `email`, `password`) VALUES (?,?,?,?,?,?,?,?)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ssssssss", $name, $address, $city, $country, $zipcode, $phone, $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
 
         // Redirect to the index page after update
         header('Location: ../../index.php');
+        return false;
     }
-
-    public function deleteUser($UserId)
+    public function updateUser($id, $name, $address, $city, $country, $zipcode, $phone, $email)
     {
-        $UserId = $this->connection->real_escape_string($UserId);
-        $this->connection->query("DELETE FROM users WHERE id=$UserId");
+        $sql = "UPDATE `customer` SET `name`= ? ,`address`= ? ,`city`= ? ,`country`= ? ,`zipcode`= ? ,`phone`= ? ,`email`= ?  WHERE `id`= ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ssssssss", $name, $address, $city, $country, $zipcode, $phone, $email, $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+
+        return false;
+    }
+    public function getPasswordById($id)
+    {
+        $sql = "SELECT password FROM customer WHERE id = ? LIMIT 1";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+    public function updatePassword($id, $password)
+    {
+        $sql = "UPDATE `customer` SET `password`= ?  WHERE `id`= ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ss", $password, $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+        return false;
     }
 }

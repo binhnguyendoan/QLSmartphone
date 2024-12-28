@@ -2,79 +2,155 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
 use App\Controller;
+use App\Models\ProductModels;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    private $postModel;
+    private $productModel;
 
     public function __construct()
     {
-        $this->postModel = new User();
+        $this->productModel = new ProductModels();
     }
 
     public function index()
     {
-        $this->render('users\home', []);
+        $products = $this->productModel->getBigSaleProducts();
+        $bestsells = $this->productModel->getBestSellerProduct();
+        $relatedProducts = $this->productModel->getRelatedProducts();
+        $this->render('users\home', ['products' => $products, 'bestsells' => $bestsells, 'relatedProducts' => $relatedProducts]);
     }
-
-    public function show($UserId)
+    public function signin()
     {
-        // Fetch a single post by ID and display in a view
-        $user = $this->postModel->getUserById($UserId);
-        $this->render('users\user-form', ['user' => $user]);
+        $this->render('users\login', []);
     }
-
-    public function create()
+    public function createAccount()
     {
-        // Handle form submission to create a new post
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Retrieve form data
-            $username = $_POST['username'];
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $password_input = $_POST['password_input'];
-            $password_check = $_POST['password_check'];
-            $email  = $_POST['email'];
+        $this->render('users\signup', []);
+    }
+    public function updateUser()
 
-            // Call the model to create a new post
-            $this->postModel->createUser($username, $firstname, $lastname, $password_input, $password_check, $email);
+    {
+        session_start();
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->render('users\information', []);
+        } else {
+            header("Location: /home");
+            exit;
         }
-
-        // Display the form to create a new post
-
-        $this->render('users\user-form', ['post' => []]);
     }
-
-    public function update($Userid)
+    public function changePassword()
+    {
+        session_start();
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->render('users\changepass', []);
+        } else {
+            header("Location: /home");
+            exit;
+        }
+    }
+    public function signup()
     {
         // Handle form submission to update a post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Retrieve form data
-            $username = $_POST['username'];
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $password_input = $_POST['password_input'];
-            $password_check = $_POST['password_check'];
-            $email  = $_POST['email'];
 
-            // Call the model to update the post
-            $this->postModel->updateUser($Userid, $username, $firstname, $lastname, $password_input, $password_check, $email);
+            $name = $_POST['name'] ?? '';
+            $address = $_POST['address'] ?? '';
+            $city = $_POST['city'] ?? '';
+            $country = $_POST['country'] ?? '';
+            $zipcode = $_POST['zipcode'] ?? '';
+            $phone = $_POST['phone'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $passwordconfirm = $_POST['passwordconfirm'] ?? '';
+            $userModel = new User();
+            if ($password == $passwordconfirm) {
+                $userModel->signup($name, $address, $city, $country, $zipcode, $phone, $email, $password);
+                header("Location: /signin");
+                exit;
+            } else {
+                $error = "Invalid username or password.";
+                include(__DIR__ . '../../Views/users/signup.php');
+            }
+            if (empty($name) || empty($address) || empty($city) || empty($country) || empty($phone) || empty($email) || empty($password)) {
+                $error = "All fields are required.";
+                include(__DIR__ . '../../Views/users/signup.php');
+                exit;
+            }
         }
-
-        // Fetch the post data and display the form to update
-        $user = $this->postModel->getUserById($Userid);
-
-        $this->render('users\user-form', ['user' => $user]);
     }
 
-    public function delete($UserId)
+    public function update()
     {
-        // Call the model to delete the post
-        $this->postModel->deleteUser($UserId);
 
-        // Redirect to the index page after deletion
-        header('Location: /index.php');
+        session_start();
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id = $_POST['id'] ?? '';
+                $name = $_POST['name'] ?? '';
+                $address = $_POST['address'] ?? '';
+                $city = $_POST['city'] ?? '';
+                $country = $_POST['country'] ?? '';
+                $zipcode = $_POST['zipcode'] ?? '';
+                $phone = $_POST['phone'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $user = (new User())->updateUser($id, $name, $address, $city, $country, $zipcode, $phone, $email);
+                $_SESSION['user'] = [
+                    'id' => $id,
+                    'name' => $name,
+                    'address' => $address,
+                    'city' => $city,
+                    'country' => $country,
+                    'zipcode' => $zipcode,
+                    'phone' => $phone,
+                    'email' => $email
+                ];
+                header("Location: /profile");
+                exit;
+            }
+        } else {
+            header("Location: /home");
+            exit;
+        }
+    }
+    public function updatePassword()
+    {
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id = $_POST['id'] ?? '';
+                $oldpassword = $_POST['oldpassword'] ?? '';
+                $newpassword = $_POST['newpassword'] ?? '';
+                $passwordconfirm = $_POST['passwordconfirm'] ?? '';
+                $user = new User();
+                if (($newpassword == $passwordconfirm) && ($user->getCustomerById($id)['password'] == $oldpassword)) {
+                    $user->updatePassword($id, $newpassword);
+                    header("Location: /profile");
+                    exit();
+                } else {
+                    header("Location: /changepassword");
+                    exit();
+                }
+            }
+        } else {
+            header("Location: /home");
+            exit;
+        }
+    }
+
+    public function logout()
+    {
+        session_start();
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+            session_destroy();
+            header("Location: /users/home");
+            exit();
+        }
+        if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+            header("Location: /home");
+            exit;
+        }
     }
 }

@@ -40,25 +40,29 @@ include_once(__DIR__ . '/header.php');
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="name"></label>
-                      <input name="name" type="text" class="form-control" placeholder="Enter Your First NAme" required>
+                      <input name="name" type="text" class="form-control"
+                        placeholder="Enter Your First NAme" required>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="name"></label>
-                      <input id="name" name="name" type="text" class="form-control" placeholder="Enter Your last NAme" required>
+                      <input id="name" name="name" type="text" class="form-control"
+                        placeholder="Enter Your last NAme" required>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="email">Email</label>
-                      <input id="email" name="email" type="text" class="form-control" placeholder="Enter Email Address" required>
+                      <input id="email" name="email" type="text" class="form-control"
+                        placeholder="Enter Email Address" required>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="phone"></label>
-                      <input id="phone" name="phone" type="text" class="form-control" placeholder="Enter Mobile Number" required>
+                      <input id="phone" name="phone" type="text" class="form-control"
+                        placeholder="Enter Mobile Number" required>
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -74,7 +78,8 @@ include_once(__DIR__ . '/header.php');
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only"></label>
-                      <input name="phone" type="text" class="form-control" placeholder="street Address" required>
+                      <input name="phone" type="text" class="form-control"
+                        placeholder="street Address" required>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -101,13 +106,15 @@ include_once(__DIR__ . '/header.php');
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only"></label>
-                      <input name="postcode" type="text" class="form-control" placeholder="Enter Your zipcode" required>
+                      <input name="postcode" type="text" class="form-control"
+                        placeholder="Enter Your zipcode" required>
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="control-label sr-only" for="textarea"></label>
-                      <textarea class="form-control" id="textarea" name="textarea" rows="4" placeholder="Notes About Your Order"></textarea>
+                      <textarea class="form-control" id="textarea" name="textarea" rows="4"
+                        placeholder="Notes About Your Order"></textarea>
                     </div>
                     <button class="btn btn-primary ">Procced to Payment</button>
                     <div class="checkbox alignright mt20">
@@ -135,7 +142,8 @@ include_once(__DIR__ . '/header.php');
 
                 <div class="pay-amount ">
                   <table class="table mb20">
-                    <thead class="" style="border-bottom: 1px solid #e8ecf0;  text-transform: uppercase;">
+                    <thead class=""
+                      style="border-bottom: 1px solid #e8ecf0;  text-transform: uppercase;">
                       <tr>
                         <th>
                           <span>Product</span>
@@ -185,7 +193,8 @@ include_once(__DIR__ . '/header.php');
               <h3 class="head-title">Check Payment</h3>
             </div>
             <div class="box-body">
-              <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+              <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store
+                Postcode.</p>
               <button class="btn btn-default btn-block">Place Order</button>
             </div>
           </div>
@@ -195,6 +204,9 @@ include_once(__DIR__ . '/header.php');
     </div>
   </div>
 </main>
+<?php include_once(__DIR__ . '/footer.php'); ?>
+<?php
+$content = ob_get_clean();
 ?>
-<?php include(__DIR__ . '/../../../templates/layout_user_home.php');
+<?php include(__DIR__ . '/../../../templates/layout_template.php');
 ?>

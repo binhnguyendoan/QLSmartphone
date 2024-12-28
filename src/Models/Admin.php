@@ -38,19 +38,33 @@ class Admin
     }
 
     //category
-    public function getCategories()
+    public function getCategories($page = 1, $limit = 10)
     {
-        $sql = "SELECT * FROM category";
-        $result = $this->connection->query($sql);
+        $offset = ($page - 1) * $limit;
+        $sql = "
+            SELECT * 
+            FROM category
+            LIMIT ?, ?
+        ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $offset, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-       
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-        
+
         return [];
     }
 
+    public function getCategoryCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM category";
+        $result = $this->connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'];
+    }
     public function addCategory($name)
     {
         $sql = "INSERT INTO category (catName) VALUES (?)";
@@ -67,10 +81,10 @@ class Admin
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            return $result->fetch_assoc(); 
+            return $result->fetch_assoc();
         }
 
-        return false; 
+        return false;
     }
 
     public function updateCategory($catId, $name)
@@ -90,15 +104,32 @@ class Admin
     }
 
     //brand
-    public function getBrand()
+    public function getBrand($page = 1, $limit = 10)
     {
-        $sql = "SELECT * FROM brand";
-        $result = $this->connection->query($sql);
+        $offset = ($page - 1) * $limit;
+        $sql = "
+        SELECT * 
+        FROM brand
+        LIMIT ?, ?
+    ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $offset, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-        
+
         return [];
+    }
+
+    public function getBrandCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM brand";
+        $result = $this->connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'];
     }
 
     public function addBrand($name)
@@ -118,10 +149,10 @@ class Admin
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            return $result->fetch_assoc(); 
+            return $result->fetch_assoc();
         }
 
-        return false; 
+        return false;
     }
     public function updateBrand($catId, $name)
     {
@@ -138,5 +169,159 @@ class Admin
         return $stmt->execute();
     }
 
+    //product
+    public function getProduct($page = 1, $limit = 10)
+    {
+        $offset = ($page - 1) * $limit;
+        $sql = "
+        SELECT 
+            p.productId,
+            p.productName,
+            p.catId,
+            c.catName,
+            p.brandId,
+            b.brandName,
+            p.desc,
+            p.price,
+            p.image,
+            p.type,
+            p.price_sale,
+            p.offer_price
+        FROM 
+            product p
+        LEFT JOIN 
+            category c ON p.catId = c.catId
+        LEFT JOIN 
+            brand b ON p.brandId = b.brandId
+        LIMIT ?, ?
+    ";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $offset, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getProductCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM product";
+        $result = $this->connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'];
+    }
+
+    public function addProduct($productName, $catId, $brandId, $desc, $price, $imagePath, $type, $price_sale, $offer_price)
+    {
+        $sql = "INSERT INTO product (productName, catId, brandId, `desc`, price, image,type,price_sale,offer_price ) 
+                VALUES (?, ?, ?, ?, ?, ?,?,?,?)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("siisdssss", $productName, $catId, $brandId, $desc, $price, $imagePath, $type, $price_sale, $offer_price);
+
+        return $stmt->execute();
+    }
+
+    public function getCategorie()
+    {
+        $sql = "SELECT catId, catName FROM category ";
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+    public function getBrands()
+    {
+        $sql = "SELECT brandId, brandName FROM brand ";
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+    public function getProductById($id)
+    {
+        $sql = "SELECT * FROM product WHERE productId = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+    public function updateProduct($productId, $productName, $catId, $brandId, $desc, $price, $imagePath, $type, $price_sale, $offer_price)
+    {
+        $sql = "UPDATE product 
+            SET productName = ?, catId = ?, brandId = ?, `desc` = ?, price = ?, image = ?, type = ?, price_sale = ?, offer_price = ? 
+            WHERE productId = ?";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("siisdssssi", $productName, $catId, $brandId, $desc, $price, $imagePath, $type, $price_sale, $offer_price, $productId);
+
+        return $stmt->execute();
+    }
+
+    public function deleteProduct($id)
+    {
+        $sql = "DELETE FROM product WHERE productId = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    //user 
+    public function getUser()
+    {
+        $sql = "SELECT * FROM customer";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function deleteUserById($id)
+    {
+        $sql = "DELETE FROM customer WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    public function getUserWithPagination($limit, $offset)
+    {
+        $sql = "SELECT * FROM customer LIMIT ? OFFSET ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $limit, $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function getTotalUsers()
+    {
+        $sql = "SELECT COUNT(*) as total FROM customer";
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['total'];
+        }
+
+        return 0;
+    }
 }
