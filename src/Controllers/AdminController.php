@@ -339,7 +339,7 @@ class AdminController extends Controller
     public function getUser()
     {
         $this->checkAuth();
-        $limit = 7;
+        $limit = 2;
         $page = $_GET['page'] ?? 1;
         $offset = ($page - 1) * $limit;
         $users = $this->adminModel->getUserWithPagination($limit, $offset);

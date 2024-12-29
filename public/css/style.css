@@ -101,3 +101,42 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
+
+#productChart {
+    width: 100%;
+    max-width: 400px; 
+    height: 400px; 
+    margin: 0 auto; 
+}
+
+
+table {
+    font-size: 14px;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 12px;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chart-container, .table-container {
+    flex: 1;
+    min-width: 300px;
+    margin: 0; 
+    padding: 5px;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -435,6 +435,7 @@ class Admin
         return $stmt->execute();
     }
 
+    //Statistical
     public function getProductCountByCategory()
     {
         $sql = "

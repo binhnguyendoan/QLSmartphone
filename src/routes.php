@@ -42,7 +42,6 @@ $router->addRoute('/\/admin\/edit-product\/(\d+)/', [new AdminController(), 'edi
 $router->addRoute('/\/admin\/delete-product\/(\d+)/', [new AdminController(), 'deleteProduct']);
 
 //admin user 
-
 $router->addRoute('/\/admin\/user/', [new AdminController(), 'getUser']);
 $router->addRoute('/\/admin\/delete-user\/(\d+)/', [new AdminController(), 'deleteUserById']);
 

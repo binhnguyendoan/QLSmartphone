@@ -11,12 +11,10 @@ $admin = $_SESSION['admin'] ?? null;
             <h3 class="text-center">Thống kê số lượng sản phẩm theo danh mục</h3>
             
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 30px;">
-                <!-- Biểu đồ nằm bên trái -->
                 <div style="flex: 1; padding: 10px;">
                     <canvas id="productChart" width="400" height="400"></canvas>
                 </div>
-
-                <!-- Table nằm bên phải -->
+                
                 <div style="flex: 1; padding: 10px; max-width: 600px;">
                     <h4>Chi tiết thống kê:</h4>
                     <table class="table table-dark table-striped table-bordered" style="border-radius: 8px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
